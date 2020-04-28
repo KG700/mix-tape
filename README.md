@@ -20,6 +20,18 @@ Contributors: [Karla Gardiner](https://github.com/KG700), [Lila Walker](https://
 
 
 ## `Tech stack`
+Ruby on Rails
+
+Javascript
+
+React
+
+Rspec
+
+Simplecov
+
+Rubocop
+
 
 
 
