@@ -6,9 +6,23 @@ class Nav extends React.Component {
   }
 
   render() {
+    const mynav = {
+      color: "red",
+      backgroundColor: "white",
+      textAlign: "center",
+      padding: "10px",
+      fontSize: "4rem"
+    };
+    const myfont = {
+      padding: "10px",
+      textAlign: "center",
+      fontSize: "1.5rem"
+    }
+
     return (
       <div>
-        <button>Login</button>
+      <h1 style={mynav}>Welcome to MixTape!</h1>
+      <p style={myfont}> Bringing people and music together</p>
       </div>
     );
   }
