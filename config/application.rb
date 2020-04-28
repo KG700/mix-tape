@@ -2,9 +2,9 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# require 'rspotify'
+require 'rspotify'
 
-# RSpotify::authenticate('spotify_client_id', 'spotify_client_secret')
+RSpotify::authenticate(ENV['spotify_client_id'], ENV['spotify_client_secret'])
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
