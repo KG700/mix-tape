@@ -1,26 +1,29 @@
 # Mix-tape
 
-[Brief](#Brief) | [Setup](#Setup) |[Running the application](#Running-the-application) |[Running tests](#Running-tests) | [Specifications](#specifications) | [Planning](#planning) | [Installation Instructions](#installation-instructions) | [Tech stack](#tech-stack) | [Challenges](#challenges)
+Contributors: [Karla Gardiner](https://github.com/KG700), [Lila Walker](https://github.com/lilawalker), [Jara Santamaria Martinez](https://github.com/jarasmar), [Sophia Bell](https://github.com/Kittaru87)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Specification](#Specification) | [Planning](#Planning) | [Installation instructions](#Installation-instructions) | [Running tests](#Running-tests) | | [Tech stack](#Tech-stack) | [Challenges](#challenges) | [Further development](#Further-development)
 
-Things you may want to cover:
+## `Specification`
 
-* Ruby version
 
-* System dependencies
+## `Planning`
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+## `Installation instructions`
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## `Running tests`
 
-* ...
+
+
+## `Tech stack`
+
+
+
+## `Challenges`
+
+
+## `Further development`
