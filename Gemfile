@@ -34,14 +34,14 @@ gem 'rspotify'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem "rubocop", "0.79.0"
+  gem 'rubocop', '0.79.0'
   gem 'rubocop-rails'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  # gem 'better_errors' 
-  # gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -57,9 +57,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'simplecov-console', require: false
-  # gem "factory_bot_rails" 
-  # gem 'rubocop'
-  # gem 'rubocop-rails'
+  # gem 'factory_bot_rails'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
