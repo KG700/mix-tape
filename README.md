@@ -1,4 +1,6 @@
-# README
+# Mix-tape
+
+[Brief](#Brief) | [Setup](#Setup) |[Running the application](#Running-the-application) |[Running tests](#Running-tests) | [Specifications](#specifications) | [Planning](#planning) | [Installation Instructions](#installation-instructions) | [Tech stack](#tech-stack) | [Challenges](#challenges)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
