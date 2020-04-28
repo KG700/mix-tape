@@ -4,7 +4,7 @@ require 'rails/all'
 
 require 'rspotify'
 
-RSpotify::authenticate(ENV['spotify_client_id'], ENV['spotify_client_secret'])
+RSpotify::authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
