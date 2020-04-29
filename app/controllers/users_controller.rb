@@ -24,6 +24,8 @@ class UsersController < ApplicationController
 
     @tracks = spotify_user.top_tracks(time_range: 'medium_term')
 
+    UserTrack.where(user_id: @user.id).destroy_all
+    
     @tracks.each do |track|
       @current_track = Track.find_by(spotify_track_id: track.id)
       unless @current_track
