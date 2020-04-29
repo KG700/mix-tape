@@ -1,4 +1,5 @@
 import React from "react";
+import { nominalTypeHack } from "prop-types";
 
 class UserList extends React.Component {
 
@@ -25,22 +26,39 @@ class UserList extends React.Component {
   render() {
     const { users } = this.state;
     const allUsers = users.map((user) => (
-      <div>{user.username}</div>
+      <li>
+        <label>
+          <input type='checkbox' name={user.username} /> 
+          {user.username}
+        </label>
+      </li>
     ));
+
     const friends = {
       color: "black",
       border: "solid 4px red",
       borderRadius: "15px",
       backgroundColor: "white",
       padding: "10px",
-      fontSize: "2rem"
+      fontSize: "2rem"  
+    };
+
+    const friendList = {
+      listStyleType: "none"
     };
 
     return(
       <div>
         <h2 style={friends}>Friends</h2>
         <div>
-          {allUsers}
+          <form>
+            <ul style={friendList}>
+              {allUsers}
+              <li><input type="submit" value="Submit"></input></li>
+            </ul>
+          </form>
+
+          
         </div>
       </div>
     );
