@@ -18,6 +18,36 @@ class UsersController < ApplicationController
 
     redirect_to root_path
 
+    @tracks = spotify_user.top_tracks(time_range: 'medium_term')
+
+    @tracks.each do |track|
+      Track.create(
+        spotify_track_id: track.id,
+        track_name: track.name,
+        track_url: track.href,
+        artist_name: track.artists[0].name,
+      )
+    end
+
+    # def index
+    # users = User.all.order(created_at: :desc)
+    #   render json: user
+    # end
+
+    # def create
+    #   user = User.create(
+    #     auth_token: spotify_user.to_hash,
+    #     username: spotify_user.id
+    #   )
+    #   if user
+    #     render json: user
+    #   else
+    #     render json: user.errors
+    #   end
+    # end
+
+  
+
     # Access private data
     # spotify_user.country #=> "US"
     # spotify_user.email   #=> "example@email.com"
@@ -47,8 +77,8 @@ class UsersController < ApplicationController
 
     # Get user's top played artists and tracks
     # spotify_user.top_artists #=> (Artist array)
-    # spotify_user.top_tracks(time_range: 'short_term') #=> (Track array)
 
     # Check doc for more
   end
+
 end

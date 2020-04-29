@@ -21,7 +21,9 @@ class Playlist extends React.Component {
 
     return(
       <div>
+
       <h2 style={playlist}>Playlist</h2>
+
       </div>
     );
   }
