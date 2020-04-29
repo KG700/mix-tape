@@ -10,12 +10,18 @@ class UserList extends React.Component {
   }
 
   render() {
+    const friends = {
+      color: "black",
+      border: "solid 4px red",
+      borderRadius: "15px",
+      backgroundColor: "white",
+      padding: "10px",
+      fontSize: "2rem"
+    };
 
     return(
       <div>
-
-        <h2>Friends</h2>
-
+        <h2 style={friends}>Friends</h2>
       </div>
     );
   }
