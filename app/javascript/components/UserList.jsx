@@ -56,9 +56,7 @@ class UserList extends React.Component {
               {allUsers}
               <li><input type="submit" value="Submit"></input></li>
             </ul>
-          </form>
-
-          
+          </form>   
         </div>
       </div>
     );
