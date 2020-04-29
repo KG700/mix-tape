@@ -14,6 +14,4 @@ RSpec.describe Track, type: :model do
     expect(subject).to be_valid
   end
 
-
-
 end
