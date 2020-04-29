@@ -10,18 +10,19 @@ class Playlist extends React.Component {
   }
 
   render() {
+    const playlist = {
+      color: "black",
+      border: "solid 4px red",
+      borderRadius: "15px",
+      backgroundColor: "white",
+      padding: "10px",
+      fontSize: "2rem"
+    };
 
     return(
       <div>
 
-        <h2>Playlist</h2>
-
-        <form action='' method='get'>
-          <button>Get Top 25 Tracks</button>
-        </form>
-        <p>
-
-        </p>
+      <h2 style={playlist}>Playlist</h2>
 
       </div>
     );

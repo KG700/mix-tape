@@ -8,8 +8,9 @@ import Playlist from "./Playlist";
 export default () => (
   <div>
     <Nav />
-    <div>Welcome to Mix-tape</div>
+    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
     <UserList />
     <Playlist />
+    </div>
   </div>
 )
