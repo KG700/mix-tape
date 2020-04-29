@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def spotify
-    @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     # Now you can access user's private data, create playlists and much more
 
     User.create(
@@ -18,31 +18,33 @@ class UsersController < ApplicationController
 
     @tracks = spotify_user.top_tracks(time_range: 'medium_term')
 
-
-    def index
-    users = User.all.order(created_at: :desc)
-      render json: user
-    end
-
-    def create
-      user = User.create(
-        auth_token: spotify_user.to_hash,
-        username: spotify_user.id
+    @tracks.each do |track|
+      Track.create(
+        spotify_track_id: track.id,
+        track_name: track.name,
+        track_url: track.href,
+        artist_name: track.artists[0].name,
       )
-      if user
-        render json: user
-      else
-        render json: user.errors
-      end
     end
 
-    # Track.create(
-    #   spotify_track_id: tracks.id,
-    #   track_name: tracks.name,
-    #   track_url: tracks.href,
-    #   artist_name: tracks.artists.name,
-    # )
+    # def index
+    # users = User.all.order(created_at: :desc)
+    #   render json: user
+    # end
 
+    # def create
+    #   user = User.create(
+    #     auth_token: spotify_user.to_hash,
+    #     username: spotify_user.id
+    #   )
+    #   if user
+    #     render json: user
+    #   else
+    #     render json: user.errors
+    #   end
+    # end
+
+  
 
     # Access private data
     # spotify_user.country #=> "US"
