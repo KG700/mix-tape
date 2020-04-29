@@ -17,7 +17,7 @@ class Nav extends React.Component {
       padding: "10px",
       textAlign: "center",
       fontSize: "1.5rem"
-    }
+    };
 
     return (
       <div>
