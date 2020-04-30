@@ -53,7 +53,7 @@ class UserList extends React.Component {
           <form>
             <ul style={friendList}>
               {allUsers}
-              <li><input type="submit" value="Submit"></input></li>
+              <li><input type="submit" value="Generate Playlist"></input></li>
             </ul>
           </form>   
         </div>

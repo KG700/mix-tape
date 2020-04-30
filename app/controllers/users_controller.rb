@@ -28,18 +28,16 @@ class UsersController < ApplicationController
     
     @tracks.each do |track|
       @current_track = Track.find_by(spotify_track_id: track.id)
-      unless @current_track
-        @current_track = Track.create(
+      @current_track ||= Track.create(
           spotify_track_id: track.id,
           track_name: track.name,
           track_url: track.href,
           artist_name: track.artists[0].name,
         )
-      end
-        UserTrack.create(
-          user_id: @user.id,
-          track_id: @current_track.id
-        )  
+      UserTrack.create(
+        user_id: @user.id,
+        track_id: @current_track.id
+      )  
     end
 
     # def index

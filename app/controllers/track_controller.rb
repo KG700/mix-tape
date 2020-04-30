@@ -1,9 +1,9 @@
 class TrackController < ApplicationController
 
-  # def index
+  def index
   #   track = Track.all
   #   render json: track
-  # end
+  end
 
   # def show
   #   me = RSpotify::User.find('sophbell87')

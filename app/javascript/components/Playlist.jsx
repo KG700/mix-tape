@@ -27,8 +27,7 @@ class Playlist extends React.Component {
       <li>
         {track.track_name}: {track.artist_name}
       </li>
-    ));
-
+    )); 
     const playlist = {
       color: "black",
       border: "solid 4px red",
