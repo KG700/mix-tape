@@ -5,29 +5,14 @@ class UserList extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      users: []
-    }
-  }
-
-  componentDidMount() {
-    const url = "/api/v1/users.json";
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        throw new Error("Network response was not ok.")
-      })
-      .then(data => { this.setState({ users: data }) });
   }
 
   render() {
-    const { users } = this.state;
-    const allUsers = users.map((user) => (
+    // const { users } = this.props.;
+    const allUsers = this.props.allUsers.map((user) => (
       <li>
         <label>
-          <input type='checkbox' name={user.username} /> 
+          <input type='checkbox' name={user.username} />
           {user.username}
         </label>
       </li>
@@ -39,7 +24,7 @@ class UserList extends React.Component {
       borderRadius: "15px",
       backgroundColor: "white",
       padding: "10px",
-      fontSize: "2rem"  
+      fontSize: "2rem"
     };
 
     const friendList = {
@@ -55,7 +40,7 @@ class UserList extends React.Component {
               {allUsers}
               <li><input type="submit" value="Generate Playlist"></input></li>
             </ul>
-          </form>   
+          </form>
         </div>
       </div>
     );
