@@ -13,24 +13,19 @@ class Home extends React.Component {
       userTracks: []
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
+    this.getPlaylist = this.getPlaylist.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.allUsers !== prevState.allUsers) {
-      console.log("something changed!")
-      // this finds all checked users
       let selectedUsers = this.state.allUsers.filter(user => user.selected)
       if (selectedUsers.length == 0) {
-        console.log("no users to populate")
         this.setState({
           userTracks: [],
         })
       } else {
-        console.log("lets find some tracks!")
         selectedUsers.forEach(user => {
-          console.log("my user_id is:")
-          console.log(user.id)
-          const url = `/api/v1/users/${sdfgs}/tracks`;
+          const url = `/api/v1/users/${user.id}/tracks`;
           fetch(url)
             .then(response => {
               if (response.ok) {
@@ -39,12 +34,12 @@ class Home extends React.Component {
               throw new Error("Network response was not ok.")
             })
             .then(data => {
-              let array = data.map(user => {
-                user['selected'] = false
-                return user
+              let array = data.map(track => {
+                track['user_id'] = user.id
+                return track
               })
-              this.setState({
-                allUsers: array,
+              this.setState(state => {
+                userTracks: state.userTracks.push(array)
               })
             });
         })
@@ -76,6 +71,33 @@ class Home extends React.Component {
     return specificUser;
   }
 
+  getPlaylist() {
+    console.log("playlist from home:")
+    let playlist = [];
+    if (this.state.userTracks.length > 0) {
+      this.state.userTracks.forEach((track, i) => {
+        console.log(track)
+        playlist.push({
+          track_name: track.track_name,
+          artist_name: track.artist_name
+        })
+      });
+
+    }
+    return playlist.slice(0,10);
+  }
+
+  shuffle(array) {
+    // this is the Fisher-Yates Algorithm
+    for(let i = array.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * i)
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
+    return array
+  }
+
   componentDidMount() {
     const url = "/api/v1/users.json";
     fetch(url)
@@ -98,6 +120,9 @@ class Home extends React.Component {
 
   render() {
 
+    let playlist = this.getPlaylist();
+    console.log(playlist)
+
     return (
       <div>
         <Nav />
@@ -108,7 +133,9 @@ class Home extends React.Component {
           checkboxFunction={this.handlerUpdateSelectedUsers}
         />
 
-        <Playlist />
+        <Playlist
+          tracks={this.state.userTracks}
+        />
         </div>
       </div>
     );

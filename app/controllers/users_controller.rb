@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.find_by(spotify_id: spotify_user.id)
     if @user
       @user.update(auth_token: spotify_user.credentials.token)
-    else 
+    else
       @user = User.create(
         auth_token: spotify_user.credentials.token,
         username: spotify_user.display_name,
@@ -20,12 +20,11 @@ class UsersController < ApplicationController
 
     session[:spotify_auth_token] = spotify_user.credentials.token
 
-    redirect_to root_path
 
-    @tracks = spotify_user.top_tracks(time_range: 'medium_term')
+    @tracks = spotify_user.top_tracks(limit: 50, time_range: 'medium_term')
 
     UserTrack.where(user_id: @user.id).destroy_all
-    
+
     @tracks.each do |track|
       @current_track = Track.find_by(spotify_track_id: track.id)
       @current_track ||= Track.create(
@@ -37,8 +36,9 @@ class UsersController < ApplicationController
       UserTrack.create(
         user_id: @user.id,
         track_id: @current_track.id
-      )  
+      )
     end
+    redirect_to root_path
 
     # def index
     # users = User.all.order(created_at: :desc)
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     #   end
     # end
 
-  
+
 
     # Access private data
     # spotify_user.country #=> "US"

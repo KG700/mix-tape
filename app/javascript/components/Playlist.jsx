@@ -1,34 +1,23 @@
 import React from "react";
+import Track from "./Track";
 
 class Playlist extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      tracks: []
-    }
-  }
-
-  componentDidMount() {
-    const url = "/api/v1/tracks.json";
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        throw new Error("Network response was not ok.")
-      })
-      .then(data => { this.setState({ tracks: data }) });
   }
 
   render() {
-    const { tracks } = this.state;
-    const allTracks = tracks.map((track) => (
-      <li>
-        {track.track_name}: {track.artist_name}
-      </li>
-    )); 
-    const playlist = {
+
+    const playlist = this.props.tracks.map((track) => (
+          <Track
+            track_name={track.track_name}
+            artist_name={track.artist_name}
+            key={track.id}
+          />
+        ));
+
+    const playlistStyle = {
       color: "black",
       border: "solid 4px red",
       borderRadius: "15px",
@@ -39,11 +28,10 @@ class Playlist extends React.Component {
 
     return(
       <div>
-
-      <h2 style={playlist}>Playlist</h2>
-
-      <ul>{allTracks}</ul>
-
+        <h2 style={playlistStyle}>Playlist</h2>
+        <ul>
+          {playlist}
+        </ul>
       </div>
     );
   }

@@ -15,6 +15,7 @@ class UserList extends React.Component {
         name={user.username}
         checked={user.selected}
         onChange={this.props.checkboxFunction}
+        key={user.id}
       />
     ));
 
