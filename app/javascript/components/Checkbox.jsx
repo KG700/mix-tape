@@ -5,8 +5,6 @@ class Checkbox extends React.Component {
     super(props)
   }
 
-
-
   render() {
 
     return (

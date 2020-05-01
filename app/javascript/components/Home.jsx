@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
+import update from 'immutability-helper';
 
 class Home extends React.Component {
   constructor(props){
@@ -16,39 +17,47 @@ class Home extends React.Component {
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
   }
 
+  // handlerUpdateSelectedUsers(event) {
+  //   // find user in allUsers array
+  //   this.updateSelected(userId)
+  //   console.log("selected users:")
+  //   console.log(this.state.selectedUsers);
+
+  // }
+
   handlerUpdateSelectedUsers(event) {
     const userId = event.target.name;
-    // find user in allUsers array
-    this.updateSelected(userId)
-    console.log("selected users:")
-    console.log(this.state.selectedUsers);
+    let user = this.findUser(userId)
+    let index = this.state.allUsers.indexOf(user)
 
-  }
+    return this.setState({
+      allUsers: update(this.state.allUsers, { index: { selected: { $set: 'true' } } })
+    })
 
-  updateSelected(userId) {
-    console.log("-----")
-    console.log("I'm in the update selected")
-    console.log(this.state.selectedUsers)
+    // this.setState({
+    //   items: update(this.state.items, { 1: { name: { $set: 'updated field name' } } })
+    // })
 
-    const user = this.findUser(userId)
-    console.log("User returned is:")
-    console.log(user)
-    // debugger;
-    if (this.state.selectedUsers.includes(user)) {
-      console.log("User was unchecked");
-      let index = this.state.selectedUsers.indexOf(user)
-      console.log(index);
-      // debugger;
-      let array = this.state.selectedUsers.filter((_,i) => i !== index)
-      return this.setState({
-        selectedUsers: array
-      })
-    } else {
-      console.log("User was selected")
-      return this.setState(state => {
-        selectedUsers: state.selectedUsers.push(user)
-      });
-    }
+    // console.log("-----")
+    // console.log("I'm in the update selected")
+    // console.log(this.state.selectedUsers)
+
+    // // const user = this.findUser(userId)
+    // console.log("User returned is:")
+    // console.log(user)
+    // // debugger;
+    // if (this.state.selectedUsers[userId]) {
+    //   console.log("User was unchecked");
+    //   // let index = this.state.selectedUsers.indexOf(user)
+    //   console.log(index);
+    //   // debugger;
+    //   // let array = this.state.selectedUsers.filter((_,i) => i !== index)
+    // } else {
+    //   console.log("User was selected")
+    //   return this.setState(state => {
+    //     selectedUsers: state.selectedUsers.push(user)
+    //   });
+    // }
 
   };
 
@@ -71,7 +80,16 @@ class Home extends React.Component {
         }
         throw new Error("Network response was not ok.")
       })
-      .then(data => { this.setState({ allUsers: data }) });
+      .then(data => {
+        let array = data.map(user => {
+          user['selected'] = false
+          return user
+        })
+        console.log(array)
+        this.setState({
+          allUsers: array
+        })
+      });
   };
 
   render() {
@@ -83,7 +101,6 @@ class Home extends React.Component {
 
         <UserList
           allUsers={this.state.allUsers}
-          selectedUsers={this.state.selectedUsers}
           checkboxFunction={this.handlerUpdateSelectedUsers}
         />
 
