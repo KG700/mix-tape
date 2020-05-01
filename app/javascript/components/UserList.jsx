@@ -1,36 +1,26 @@
 import React from "react";
 import { nominalTypeHack } from "prop-types";
+import Checkbox from './Checkbox';
 
 class UserList extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      users: []
-    }
+    this.isSelected = this.isSelected.bind(this);
   }
 
-  componentDidMount() {
-    const url = "/api/v1/users.json";
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        throw new Error("Network response was not ok.")
-      })
-      .then(data => { this.setState({ users: data }) });
+  isSelected(user) {
+    this.props.selectedUsers.includes(user);
   }
 
   render() {
-    const { users } = this.state;
-    const allUsers = users.map((user) => (
-      <li>
-        <label>
-          <input type='checkbox' name={user.username} /> 
-          {user.username}
-        </label>
-      </li>
+    const allUsers = this.props.allUsers.map((user) => (
+      <Checkbox
+        id={user.id}
+        name={user.username}
+        checked={this.isSelected(user)}
+        onChange={this.props.checkboxFunction}
+      />
     ));
 
     const friends = {
@@ -39,7 +29,7 @@ class UserList extends React.Component {
       borderRadius: "15px",
       backgroundColor: "white",
       padding: "10px",
-      fontSize: "2rem"  
+      fontSize: "2rem"
     };
 
     const friendList = {
@@ -51,11 +41,8 @@ class UserList extends React.Component {
         <h2 style={friends}>Friends</h2>
         <div>
           <form>
-            <ul style={friendList}>
-              {allUsers}
-              <li><input type="submit" value="Generate Playlist"></input></li>
-            </ul>
-          </form>   
+            {allUsers}
+          </form>
         </div>
       </div>
     );
