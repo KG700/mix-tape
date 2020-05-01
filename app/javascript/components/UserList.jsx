@@ -14,6 +14,7 @@ class UserList extends React.Component {
   // }
 
   render() {
+    console.log(this.props.allUsers)
     const allUsers = this.props.allUsers.map((user) => (
       <Checkbox
         id={user.id}

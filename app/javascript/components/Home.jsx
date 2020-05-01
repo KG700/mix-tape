@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-import update from 'immutability-helper';
+// import update from 'immutability-helper';
 
 class Home extends React.Component {
   constructor(props){
@@ -11,7 +11,6 @@ class Home extends React.Component {
     this.state = {
       currentUser: {},
       allUsers: [],
-      selectedUsers: [],
       userTracks: []
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
@@ -28,11 +27,22 @@ class Home extends React.Component {
   handlerUpdateSelectedUsers(event) {
     const userId = event.target.name;
     let user = this.findUser(userId)
+    user.selected = !user.selected
     let index = this.state.allUsers.indexOf(user)
 
-    return this.setState({
-      allUsers: update(this.state.allUsers, { index: { selected: { $set: 'true' } } })
-    })
+    const users = this.state.allUsers
+    users[index] = user
+
+    // console.log(this.state.allUsers[0].selected)
+    this.setState(prevState => ({
+      // ...prevState,
+      allUsers: users,
+    }))
+  };
+
+
+
+  // allUsers[user_id].selected
 
     // this.setState({
     //   items: update(this.state.items, { 1: { name: { $set: 'updated field name' } } })
@@ -59,7 +69,6 @@ class Home extends React.Component {
     //   });
     // }
 
-  };
 
   findUser(userId) {
     let specificUser;
