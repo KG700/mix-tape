@@ -1,5 +1,4 @@
 import React from "react";
-import { nominalTypeHack } from "prop-types";
 import Checkbox from './Checkbox';
 
 class UserList extends React.Component {

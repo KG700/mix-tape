@@ -10,42 +10,42 @@ class Home extends React.Component {
     this.state = {
       currentUser: {},
       allUsers: [],
-      userTracks: []
+      // userTracks: []
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
-    this.getPlaylist = this.getPlaylist.bind(this);
+    this.getSelectedUsers = this.getSelectedUsers.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.allUsers !== prevState.allUsers) {
-      let selectedUsers = this.state.allUsers.filter(user => user.selected)
-      if (selectedUsers.length == 0) {
-        this.setState({
-          userTracks: [],
-        })
-      } else {
-        selectedUsers.forEach(user => {
-          const url = `/api/v1/users/${user.id}/tracks`;
-          fetch(url)
-            .then(response => {
-              if (response.ok) {
-                return response.json()
-              }
-              throw new Error("Network response was not ok.")
-            })
-            .then(data => {
-              let array = data.map(track => {
-                track['user_id'] = user.id
-                return track
-              })
-              this.setState(state => {
-                userTracks: state.userTracks.push(array)
-              })
-            });
-        })
-      }
-    }
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (this.state.allUsers !== prevState.allUsers) {
+  //     let selectedUsers = this.state.allUsers.filter(user => user.selected)
+  //     if (selectedUsers.length == 0) {
+  //       this.setState({
+  //         userTracks: [],
+  //       })
+  //     } else {
+  //       selectedUsers.forEach(user => {
+  //         const url = `/api/v1/users/${user.id}/tracks`;
+  //         fetch(url)
+  //           .then(response => {
+  //             if (response.ok) {
+  //               return response.json()
+  //             }
+  //             throw new Error("Network response was not ok.")
+  //           })
+  //           .then(data => {
+  //             let array = data.map(track => {
+  //               track['user_id'] = user.id
+  //               return track
+  //             })
+  //             this.setState(state => {
+  //               userTracks: state.userTracks.push(array)
+  //             })
+  //           });
+  //       })
+  //     }
+  //   }
+  // }
 
   handlerUpdateSelectedUsers(event) {
     const users = [...this.state.allUsers]
@@ -61,6 +61,25 @@ class Home extends React.Component {
     }))
   };
 
+  getSelectedUsers() {
+    let selectedUsers = this.state.allUsers.filter(user => user.selected)
+    console.log("these are the selected users:")
+    console.log(selectedUsers)
+    if (selectedUsers.length == 0) {
+      console.log("these are the selected users ids:")
+      console.log(selectedUsers)
+      return selectedUsers
+    } else {
+      let selectedUsersIds = selectedUsers.map(user =>
+        user.id
+      )
+      console.log("these are the selected users ids:")
+      console.log(selectedUsersIds)
+      return selectedUsersIds
+    }
+    // Use selectedUsers to create an array of user ids.
+  }
+
   findUser(userId) {
     let specificUser;
     this.state.allUsers.map(user => {
@@ -71,32 +90,32 @@ class Home extends React.Component {
     return specificUser;
   }
 
-  getPlaylist() {
-    console.log("playlist from home:")
-    let playlist = [];
-    if (this.state.userTracks.length > 0) {
-      this.state.userTracks.forEach((track, i) => {
-        console.log(track)
-        playlist.push({
-          track_name: track.track_name,
-          artist_name: track.artist_name
-        })
-      });
-
-    }
-    return playlist.slice(0,10);
-  }
-
-  shuffle(array) {
-    // this is the Fisher-Yates Algorithm
-    for(let i = array.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * i)
-      const temp = array[i]
-      array[i] = array[j]
-      array[j] = temp
-    }
-    return array
-  }
+  // getPlaylist() {
+  //   console.log("playlist from home:")
+  //   let playlist = [];
+  //   if (this.state.userTracks.length > 0) {
+  //     this.state.userTracks.forEach((track, i) => {
+  //       console.log(track)
+  //       playlist.push({
+  //         track_name: track.track_name,
+  //         artist_name: track.artist_name
+  //       })
+  //     });
+  //
+  //   }
+  //   return playlist.slice(0,10);
+  // }
+  //
+  // shuffle(array) {
+  //   // this is the Fisher-Yates Algorithm
+  //   for(let i = array.length - 1; i > 0; i--){
+  //     const j = Math.floor(Math.random() * i)
+  //     const temp = array[i]
+  //     array[i] = array[j]
+  //     array[j] = temp
+  //   }
+  //   return array
+  // }
 
   componentDidMount() {
     const url = "/api/v1/users.json";
@@ -120,8 +139,8 @@ class Home extends React.Component {
 
   render() {
 
-    let playlist = this.getPlaylist();
-    console.log(playlist)
+    // let playlist = this.getPlaylist();
+    // console.log(playlist)
 
     return (
       <div>
@@ -134,7 +153,7 @@ class Home extends React.Component {
         />
 
         <Playlist
-          tracks={this.state.userTracks}
+          group={this.getSelectedUsers()}
         />
         </div>
       </div>
