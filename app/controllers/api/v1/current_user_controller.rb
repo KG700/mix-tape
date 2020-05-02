@@ -1,5 +1,6 @@
 class Api::V1::CurrentUserController < ApplicationController
   def index
-    render json: User.all
+    current_user = User.find(session[:user_id])
+    render json: current_user
   end
 end

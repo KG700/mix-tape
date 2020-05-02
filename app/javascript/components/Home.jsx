@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
+import CurrentUser from "./CurrentUser";
 
 class Home extends React.Component {
   constructor(props){
@@ -74,20 +75,34 @@ class Home extends React.Component {
       .then(data => { this.setState({ allUsers: data }) });
   };
 
+  componentDidMount() {
+    const url = "/api/v1/current_user.json";
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error("Network response was not ok.")
+      })
+      .then(data => { this.setState({ currentUser: data }) });
+  };
+
   render() {
 
     return (
       <div>
+        <CurrentUser />
+        
         <Nav />
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
-        <UserList
-          allUsers={this.state.allUsers}
-          selectedUsers={this.state.selectedUsers}
-          checkboxFunction={this.handlerUpdateSelectedUsers}
-        />
+          <UserList
+            allUsers={this.state.allUsers}
+            selectedUsers={this.state.selectedUsers}
+            checkboxFunction={this.handlerUpdateSelectedUsers}
+          />
 
-        <Playlist />
+          <Playlist />
         </div>
       </div>
     );
