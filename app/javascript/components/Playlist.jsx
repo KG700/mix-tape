@@ -10,38 +10,26 @@ class Playlist extends React.Component {
       combinedPlaylistIds: []
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
-
   }
-
+  
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.group !== prevProps.group) {
-      console.log("these are prevProps")
-        console.log(prevProps)
 
       // 1. first remove any tracks of users that aren't in the group anymore:
       if (this.props.group.length < prevProps.group.length) {
         let tracks = this.state.tracks.filter(track => this.props.group.includes(track.user_id))
-        console.log("tracks in playist")
-        console.log(tracks)
-
         return this.setState({
           tracks: tracks
         })
-
       } else {
-
       // 2. then find any users that have been added to the group:
       let newUser;
       if (this.props.group.length > prevProps.group.length) {
-        console.log(this.props.group)
         this.props.group.forEach(user => {
-          console.log(user)
-          console.log(prevProps.group)
           if (!prevProps.group.includes(user)) {
             newUser = user
           }
         })
-        console.log(newUser)
       }
 
       // 3. then do an api call for any new members of the group:
@@ -66,8 +54,7 @@ class Playlist extends React.Component {
 
               let currentTracks = this.state.tracks
               currentTracks.push(newTracks)
-
-                let combinedTracks = currentTracks.flat(Infinity);
+              let combinedTracks = currentTracks.flat(Infinity);
 
               this.setState({
                 tracks: combinedTracks
@@ -75,7 +62,7 @@ class Playlist extends React.Component {
             });
       }
     }
-  }
+    }
   }
 
   createCombinedPlaylist() {
@@ -86,7 +73,8 @@ class Playlist extends React.Component {
     newPlaylist.forEach(track => {
       this.state.combinedPlaylistIds.push(track.spotify_track_id)
     })
-
+    console.log(this.state.combinedPlaylistIds)
+    console.log(JSON.stringify(this.state.combinedPlaylistIds))
     return newPlaylist
   }
 
@@ -101,9 +89,41 @@ class Playlist extends React.Component {
     return array
   }
 
+  handlerGeneratePlaylist() {
+    const data = this.state.combinedPlaylistIds;
+
+    fetch("/api/v1/users.json", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    } )
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      throw new Error("Network response was not ok.")
+    })
+    .then(data => {
+      console.log('Success:', data);
+  }
+
+  // addContact = async data => {
+  //   const response = await fetch(`${APIURL}/contacts`, {
+  //     method: "POST",
+  //     mode: "cors",
+  //     cache: "no-cache",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(data)
+  //   });
+  //   return response.json();
+  // };
+
   render() {
     let playlist = this.createCombinedPlaylist();
-    console.log(playlist)
     let renderPlaylist = playlist.map((track) => (
           <Track
             track_name={track.track_name}
@@ -128,6 +148,7 @@ class Playlist extends React.Component {
         <ul>
         {renderPlaylist}
         </ul>
+        <button onClick={this.createCombinedPlaylist}>Shuffle</button>
         <form action='/add/playlist'>
           <button>Generate playlist</button>
         </form>
@@ -135,7 +156,6 @@ class Playlist extends React.Component {
       </div>
     );
   }
-
 
 }
 
