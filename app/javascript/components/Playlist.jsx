@@ -13,7 +13,8 @@ class Playlist extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.group !== prevProps.group) {
-
+      console.log("these are prevProps")
+        console.log(prevProps)
 
       // 1. first remove any tracks of users that aren't in the group anymore:
       if (this.props.group.length < prevProps.group.length) {
@@ -28,11 +29,18 @@ class Playlist extends React.Component {
       } else {
 
       // 2. then find any users that have been added to the group:
-      let user;
+      let newUser;
       if (this.props.group.length > prevProps.group.length) {
         console.log(this.props.group)
-        user = this.props.group[this.props.group.length -1]
-        console.log(user)
+        this.props.group.forEach(user => {
+          console.log(user)
+          console.log(prevProps.group)
+          if (!prevProps.group.includes(user)) {
+            newUser = user
+          }
+        } )
+        // user = this.props.group[this.props.group.length -1]
+        console.log(newUser)
       }
 
       // then do an api call for any new members of the group:
@@ -42,7 +50,7 @@ class Playlist extends React.Component {
         })
       } else {
         // this.props.group.forEach(user => {
-          const url = `/api/v1/users/${user}/tracks`;
+          const url = `/api/v1/users/${newUser}/tracks`;
           fetch(url)
             .then(response => {
               if (response.ok) {
@@ -52,7 +60,7 @@ class Playlist extends React.Component {
             })
             .then(data => {
               let newTracks = data.map(track => {
-                track['user_id'] = user
+                track['user_id'] = newUser
                 return track
               })
               console.log(newTracks)

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     session[:spotify_auth_token] = spotify_user.credentials.token
 
 
-    @tracks = spotify_user.top_tracks(limit: 50, time_range: 'medium_term')
+    @tracks = spotify_user.top_tracks(limit: 50, time_range: 'short_term')
 
     UserTrack.where(user_id: @user.id).destroy_all
 
