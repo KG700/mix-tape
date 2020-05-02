@@ -13,18 +13,27 @@ class Playlist extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.group !== prevProps.group) {
-      // first remove any tracks of users that aren't in the group anymore:
-      if (this.props.group.length !== 0) {
+
+
+      // 1. first remove any tracks of users that aren't in the group anymore:
+      if (this.props.group.length < prevProps.group.length) {
         let tracks = this.state.tracks.filter(track => this.props.group.includes(track.user_id))
         console.log("tracks in playist")
         console.log(tracks)
+
+        return this.setState({
+          tracks: tracks
+        })
+
       } else {
-        console.log("tracks is empty")
+
+      // 2. then find any users that have been added to the group:
+      let user;
+      if (this.props.group.length > prevProps.group.length) {
+        console.log(this.props.group)
+        user = this.props.group[this.props.group.length -1]
+        console.log(user)
       }
-      // then find any users that have been added to the group:
-      // let newMembers = this.props.group.
-      // console.log(newMembers)
-      // vendors.filter(vendor => vendor.Name === "Magenic")
 
       // then do an api call for any new members of the group:
       if (this.props.group.length == 0) {
@@ -32,7 +41,7 @@ class Playlist extends React.Component {
           tracks: [],
         })
       } else {
-        this.props.group.forEach(user => {
+        // this.props.group.forEach(user => {
           const url = `/api/v1/users/${user}/tracks`;
           fetch(url)
             .then(response => {
@@ -42,17 +51,32 @@ class Playlist extends React.Component {
               throw new Error("Network response was not ok.")
             })
             .then(data => {
-              let array = data.map(track => {
+              let newTracks = data.map(track => {
                 track['user_id'] = user
                 return track
               })
-              this.setState(state => {
-                tracks: state.tracks.push(array)
+              console.log(newTracks)
+
+              let currentTracks = this.state.tracks
+              console.log(currentTracks)
+
+              console.log(currentTracks.concat(newTracks).flat(Infinity))
+
+              currentTracks.push(newTracks)
+              console.log(currentTracks)
+
+              // let combinedTracks = currentTracks.reduce((a, b) => a.concat(b), []);
+                let combinedTracks = currentTracks.flat(Infinity);
+              console.log(combinedTracks)
+
+              this.setState({
+                tracks: combinedTracks
               })
             });
-        })
+        // })
       }
     }
+  }
   }
 
   getPlaylist() {
@@ -83,16 +107,16 @@ class Playlist extends React.Component {
   // }
 
   render() {
-    const playlist = [];
-    if (this.state.tracks.length > 0) {
-    playlist = this.state.tracks.map((track) => (
-          <Track
-            track_name={track.track_name}
-            artist_name={track.artist_name}
-            key={track.id}
-          />
-        ))
-      };
+    // const playlist = [];
+    // if (this.state.tracks.length > 0) {
+    // playlist = this.state.tracks.map((track) => (
+    //       <Track
+    //         track_name={track.track_name}
+    //         artist_name={track.artist_name}
+    //         key={track.id}
+    //       />
+    //     ))
+    //   };
 
     const playlistStyle = {
       color: "black",
@@ -108,7 +132,7 @@ class Playlist extends React.Component {
         <h2 style={playlistStyle}>Playlist</h2>
         <div>
         <ul>
-          {playlist}
+
         </ul>
         </div>
       </div>
