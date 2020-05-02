@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       )
     end
 
-    session[:user_id] = @user.id
+    session[:current_user_id] = @user.id
 
     @tracks = spotify_user.top_tracks(time_range: 'medium_term')
 
