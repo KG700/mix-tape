@@ -3,6 +3,11 @@ class Api::V1::UsersController < ApplicationController
     render json: User.all
   end
 
+  # def current_user
+  #   current_user = User.find(session[:user_id])
+  #   render json: current_user
+  # end
+
   # def create
   #   fruit = Fruit.create(fruit_params)
   #   render json: fruit

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
+import CurrentUser from "./CurrentUser";
 
 class Home extends React.Component {
   constructor(props){
@@ -14,7 +15,6 @@ class Home extends React.Component {
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
     this.getSelectedUsers = this.getSelectedUsers.bind(this);
   }
-
 
   handlerUpdateSelectedUsers(event) {
     const users = [...this.state.allUsers]
@@ -53,31 +53,36 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    const url = "/api/v1/users.json";
-    fetch(url)
+  
+    fetch("/api/v1/users.json")
       .then(response => {
         if (response.ok) {
           return response.json()
         }
         throw new Error("Network response was not ok.")
       })
-      .then(data => {
-        let array = data.map(user => {
-          user['selected'] = false
-          return user
-        })
-        this.setState({
-          allUsers: array,
-        })
-      });
+      .then(data => { this.setState({ allUsers: data }) });
+
+    fetch("/api/v1/currentuser.json")
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error("Network response was not ok.")
+      })
+      .then(data => { this.setState({ currentUser: data }) });
   };
 
   render() {
 
     return (
       <div>
+        <CurrentUser 
+          currentUser={this.state.currentUser}
+        />
+        
         <Nav />
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         <UserList
           allUsers={this.state.allUsers}
@@ -89,6 +94,7 @@ class Home extends React.Component {
         />
         </div>
       </div>
+      
     );
   }
 }
