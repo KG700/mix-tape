@@ -107,16 +107,17 @@ class Playlist extends React.Component {
   // }
 
   render() {
-    // const playlist = [];
     // if (this.state.tracks.length > 0) {
-    // playlist = this.state.tracks.map((track) => (
-    //       <Track
-    //         track_name={track.track_name}
-    //         artist_name={track.artist_name}
-    //         key={track.id}
-    //       />
-    //     ))
-    //   };
+    let playlist = this.state.tracks.map((track) => (
+          <Track
+            track_name={track.track_name}
+            artist_name={track.artist_name}
+            key={track.id}
+          />
+        ))
+    
+      // };
+    
 
     const playlistStyle = {
       color: "black",
@@ -132,7 +133,7 @@ class Playlist extends React.Component {
         <h2 style={playlistStyle}>Playlist</h2>
         <div>
         <ul>
-
+        {playlist}
         </ul>
         </div>
       </div>
