@@ -11,47 +11,36 @@ class Home extends React.Component {
     this.state = {
       currentUser: {},
       allUsers: [],
-      selectedUsers: [],
-      userTracks: []
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
+    this.getSelectedUsers = this.getSelectedUsers.bind(this);
   }
 
   handlerUpdateSelectedUsers(event) {
+    const users = [...this.state.allUsers]
     const userId = event.target.name;
-    // find user in allUsers array
-    this.updateSelected(userId)
-    console.log("selected users:")
-    console.log(this.state.selectedUsers);
+    let user = this.findUser(userId)
+    let index = this.state.allUsers.indexOf(user)
 
-  }
+    user.selected = !user.selected
+    users[index] = user
 
-  updateSelected(userId) {
-    console.log("-----")
-    console.log("I'm in the update selected")
-    console.log(this.state.selectedUsers)
-
-    const user = this.findUser(userId)
-    console.log("User returned is:")
-    console.log(user)
-    // debugger;
-    if (this.state.selectedUsers.includes(user)) {
-      console.log("User was unchecked");
-      let index = this.state.selectedUsers.indexOf(user)
-      console.log(index);
-      // debugger;
-      let array = this.state.selectedUsers.filter((_,i) => i !== index)
-      return this.setState({
-        selectedUsers: array
-      })
-    } else {
-      console.log("User was selected")
-      return this.setState(state => {
-        selectedUsers: state.selectedUsers.push(user)
-      });
-    }
-
+    this.setState(({
+      allUsers: users,
+    }))
   };
+
+  getSelectedUsers() {
+    let selectedUsers = this.state.allUsers.filter(user => user.selected)
+    if (selectedUsers.length == 0) {
+      return selectedUsers
+    } else {
+      let selectedUsersIds = selectedUsers.map(user =>
+        user.id
+      )
+      return selectedUsersIds
+    }
+  }
 
   findUser(userId) {
     let specificUser;
@@ -62,7 +51,6 @@ class Home extends React.Component {
     })
     return specificUser;
   }
-
 
   componentDidMount() {
   
@@ -75,7 +63,6 @@ class Home extends React.Component {
       })
       .then(data => { this.setState({ allUsers: data }) });
 
-    
     fetch("/api/v1/currentuser.json")
       .then(response => {
         if (response.ok) {
@@ -97,13 +84,14 @@ class Home extends React.Component {
         <Nav />
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
-          <UserList
-            allUsers={this.state.allUsers}
-            selectedUsers={this.state.selectedUsers}
-            checkboxFunction={this.handlerUpdateSelectedUsers}
-          />
+        <UserList
+          allUsers={this.state.allUsers}
+          checkboxFunction={this.handlerUpdateSelectedUsers}
+        />
 
-          <Playlist />
+        <Playlist
+          group={this.getSelectedUsers()}
+        />
         </div>
       </div>
       

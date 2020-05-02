@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     session[:current_user_id] = @user.id
 
-    @tracks = spotify_user.top_tracks(time_range: 'medium_term')
+    @tracks = spotify_user.top_tracks(limit: 50, time_range: 'short_term')
 
     UserTrack.where(user_id: @user.id).destroy_all
 
@@ -29,12 +29,13 @@ class UsersController < ApplicationController
         track_url: track.href,
         artist_name: track.artists[0].name,
         )
-        UserTrack.create(
-          user_id: @user.id,
-          track_id: @current_track.id
-          )
-    end
 
+      UserTrack.create(
+        user_id: @user.id,
+        track_id: @current_track.id
+        )
+    end
+    
     redirect_to root_path
 
   end

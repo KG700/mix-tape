@@ -1,16 +1,10 @@
 import React from "react";
-import { nominalTypeHack } from "prop-types";
 import Checkbox from './Checkbox';
 
 class UserList extends React.Component {
 
   constructor(props){
     super(props);
-    this.isSelected = this.isSelected.bind(this);
-  }
-
-  isSelected(user) {
-    this.props.selectedUsers.includes(user);
   }
 
   render() {
@@ -18,8 +12,9 @@ class UserList extends React.Component {
       <Checkbox
         id={user.id}
         name={user.username}
-        checked={this.isSelected(user)}
+        checked={user.selected}
         onChange={this.props.checkboxFunction}
+        key={user.id}
       />
     ));
 

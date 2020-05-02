@@ -1,4 +1,4 @@
 class UserTrack < ApplicationRecord
-  has_many :tracks
-  has_many :users
+  belongs_to :track
+  belongs_to :user
 end
