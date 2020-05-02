@@ -14,7 +14,8 @@ class UsersController < ApplicationController
       @user = User.create(
         auth_token: spotify_user.credentials.token,
         username: spotify_user.display_name,
-        spotify_id: spotify_user.id
+        spotify_id: spotify_user.id,
+        image_url: spotify_user.images[0].url
       )
     end
 
