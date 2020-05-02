@@ -41,17 +41,15 @@ class Playlist extends React.Component {
             newUser = user
           }
         })
-        // user = this.props.group[this.props.group.length -1]
         console.log(newUser)
       }
 
-      // then do an api call for any new members of the group:
+      // 3. then do an api call for any new members of the group:
       if (this.props.group.length == 0) {
         this.setState({
           tracks: [],
         })
       } else {
-        // this.props.group.forEach(user => {
           const url = `/api/v1/users/${newUser}/tracks`;
           fetch(url)
             .then(response => {
@@ -65,59 +63,32 @@ class Playlist extends React.Component {
                 track['user_id'] = newUser
                 return track
               })
-              console.log(newTracks)
 
               let currentTracks = this.state.tracks
-              console.log(currentTracks)
-
-              console.log(currentTracks.concat(newTracks).flat(Infinity))
-
               currentTracks.push(newTracks)
-              console.log(currentTracks)
 
-              // let combinedTracks = currentTracks.reduce((a, b) => a.concat(b), []);
                 let combinedTracks = currentTracks.flat(Infinity);
-              console.log(combinedTracks)
 
               this.setState({
                 tracks: combinedTracks
               })
             });
-        // })
       }
     }
   }
   }
 
   createCombinedPlaylist() {
-    console.log("New combined playlist")
     let newPlaylist = [...this.state.tracks]
     newPlaylist = this.shuffle(newPlaylist)
-    console.log(newPlaylist)
     newPlaylist = newPlaylist.slice(0,25)
     this.state.combinedPlaylistIds = []
     newPlaylist.forEach(track => {
-      // console.log(track)
       this.state.combinedPlaylistIds.push(track.spotify_track_id)
     })
 
     return newPlaylist
   }
-  // getPlaylist() {
-  //   console.log("playlist from home:")
-  //   let playlist = [];
-  //   if (this.state.userTracks.length > 0) {
-  //     this.state.userTracks.forEach((track, i) => {
-  //       console.log(track)
-  //       playlist.push({
-  //         track_name: track.track_name,
-  //         artist_name: track.artist_name
-  //       })
-  //     });
-
-  //   }
-  //   return playlist.slice(0,10);
-  // }
 
   shuffle(array) {
     // this is the Fisher-Yates Algorithm
@@ -131,7 +102,6 @@ class Playlist extends React.Component {
   }
 
   render() {
-    // if (this.state.tracks.length > 0) {
     let playlist = this.createCombinedPlaylist();
     console.log(playlist)
     let renderPlaylist = playlist.map((track) => (
@@ -158,6 +128,9 @@ class Playlist extends React.Component {
         <ul>
         {renderPlaylist}
         </ul>
+        <form action='/add/playlist'>
+          <button>Generate playlist</button>
+        </form>
         </div>
       </div>
     );
