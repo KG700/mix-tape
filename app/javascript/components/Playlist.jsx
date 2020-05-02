@@ -94,8 +94,14 @@ class Playlist extends React.Component {
     let newPlaylist = [...this.state.tracks]
     newPlaylist = this.shuffle(newPlaylist)
     console.log(newPlaylist)
+    newPlaylist = newPlaylist.slice(0,25)
+    this.state.combinedPlaylistIds = []
+    newPlaylist.forEach(track => {
+      // console.log(track)
+      this.state.combinedPlaylistIds.push(track.spotify_track_id)
+    })
 
-    return newPlaylist.slice(0,25)
+    return newPlaylist
   }
   // getPlaylist() {
   //   console.log("playlist from home:")
