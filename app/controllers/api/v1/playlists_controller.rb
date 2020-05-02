@@ -14,6 +14,7 @@ class Api::V1::PlaylistsController < ApplicationController
       playlist_tracks << RSpotify::Track.find(track)
     end
     playlist.add_tracks!(playlist_tracks)
+    session[:playlist_id] = playlist.id
   end
 
 end
