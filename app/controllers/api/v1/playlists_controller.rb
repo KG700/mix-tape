@@ -6,9 +6,10 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def create
-    
-    p params[:playlist]
-
+    user = RSpotify::User.find(current_user.spotify_id)
+    p user
+    playlist_tracks = params[:playlist]
+    user.create_playlist!('my-first-playlist')
   
   end
 
