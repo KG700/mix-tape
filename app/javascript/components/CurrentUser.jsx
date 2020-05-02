@@ -6,13 +6,13 @@ class CurrentUser extends React.Component {
   }
 
   render() {
-    // const profilePicture = this.props.currentUser.image_url
-    // console.log(this.props)
-    // const userName = this.props.currentUser[username]
+    const profilePicture = this.props.currentUser.image_url
+    const userName = this.props.currentUser.username
+
     return (
       <div>
-        {/* {userName} */}
-        {/* <img src={profilePicture} alt="ProfilePicture" height="42" width="42" /> */}
+        {userName}
+        <img src={profilePicture} alt="ProfilePicture" height="42" width="42" /> 
       </div>
     );
   }

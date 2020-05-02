@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index]
       resources :tracks, only: [:index]
+      resources :currentuser, only: [:index]
     end
   end
 
