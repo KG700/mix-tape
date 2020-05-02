@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index] do
         resources :tracks
       end
+      resources :playlists, only: [:create, :index]
     end
   end
 

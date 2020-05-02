@@ -10,6 +10,7 @@ class Playlist extends React.Component {
       combinedPlaylistIds: []
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
+  this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
   }
   
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -73,8 +74,6 @@ class Playlist extends React.Component {
     newPlaylist.forEach(track => {
       this.state.combinedPlaylistIds.push(track.spotify_track_id)
     })
-    console.log(this.state.combinedPlaylistIds)
-    console.log(JSON.stringify(this.state.combinedPlaylistIds))
     return newPlaylist
   }
 
@@ -90,37 +89,18 @@ class Playlist extends React.Component {
   }
 
   handlerGeneratePlaylist() {
-    const data = this.state.combinedPlaylistIds;
+    const data = { playlist: this.state.combinedPlaylistIds};
+    const csrfToken = document.querySelector("[name='csrf-token']").content;
 
-    fetch("/api/v1/users.json", {
+    fetch("/api/v1/playlists.json", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken 
       },
       body: JSON.stringify(data),
-    } )
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw new Error("Network response was not ok.")
     })
-    .then(data => {
-      console.log('Success:', data);
   }
-
-  // addContact = async data => {
-  //   const response = await fetch(`${APIURL}/contacts`, {
-  //     method: "POST",
-  //     mode: "cors",
-  //     cache: "no-cache",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(data)
-  //   });
-  //   return response.json();
-  // };
 
   render() {
     let playlist = this.createCombinedPlaylist();
@@ -149,9 +129,9 @@ class Playlist extends React.Component {
         {renderPlaylist}
         </ul>
         <button onClick={this.createCombinedPlaylist}>Shuffle</button>
-        <form action='/add/playlist'>
-          <button>Generate playlist</button>
-        </form>
+
+        <button onClick={this.handlerGeneratePlaylist}>Generate playlist</button>
+ 
         </div>
       </div>
     );
