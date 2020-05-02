@@ -32,18 +32,12 @@ class Home extends React.Component {
 
   getSelectedUsers() {
     let selectedUsers = this.state.allUsers.filter(user => user.selected)
-    console.log("these are the selected users:")
-    console.log(selectedUsers)
     if (selectedUsers.length == 0) {
-      console.log("these are the selected users ids:")
-      console.log(selectedUsers)
       return selectedUsers
     } else {
       let selectedUsersIds = selectedUsers.map(user =>
         user.id
       )
-      console.log("these are the selected users ids:")
-      console.log(selectedUsersIds)
       return selectedUsersIds
     }
   }
