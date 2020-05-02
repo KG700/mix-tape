@@ -6,10 +6,11 @@ class Playlist extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      tracks: []
+      tracks: [],
+      combinedPlaylistIds: []
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
-  
+
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -93,7 +94,8 @@ class Playlist extends React.Component {
     let newPlaylist = [...this.state.tracks]
     newPlaylist = this.shuffle(newPlaylist)
     console.log(newPlaylist)
-    return newPlaylist
+
+    return newPlaylist.slice(0,25)
   }
   // getPlaylist() {
   //   console.log("playlist from home:")
@@ -124,7 +126,7 @@ class Playlist extends React.Component {
 
   render() {
     // if (this.state.tracks.length > 0) {
-    let playlist = this.createCombinedPlaylist();  
+    let playlist = this.createCombinedPlaylist();
     console.log(playlist)
     let renderPlaylist = playlist.map((track) => (
           <Track
