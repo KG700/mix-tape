@@ -8,7 +8,8 @@ class Playlist extends React.Component {
     this.state = {
       tracks: []
     }
-  this.getPlaylist = this.getPlaylist.bind(this);
+  this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
+  
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -38,7 +39,7 @@ class Playlist extends React.Component {
           if (!prevProps.group.includes(user)) {
             newUser = user
           }
-        } )
+        })
         // user = this.props.group[this.props.group.length -1]
         console.log(newUser)
       }
@@ -87,45 +88,51 @@ class Playlist extends React.Component {
   }
   }
 
-  getPlaylist() {
-    console.log("playlist from home:")
-    let playlist = [];
-    if (this.state.userTracks.length > 0) {
-      this.state.userTracks.forEach((track, i) => {
-        console.log(track)
-        playlist.push({
-          track_name: track.track_name,
-          artist_name: track.artist_name
-        })
-      });
-
-    }
-    return playlist.slice(0,10);
+  createCombinedPlaylist() {
+    console.log("New combined playlist")
+    let newPlaylist = [...this.state.tracks]
+    newPlaylist = this.shuffle(newPlaylist)
+    console.log(newPlaylist)
+    return newPlaylist
   }
+  // getPlaylist() {
+  //   console.log("playlist from home:")
+  //   let playlist = [];
+  //   if (this.state.userTracks.length > 0) {
+  //     this.state.userTracks.forEach((track, i) => {
+  //       console.log(track)
+  //       playlist.push({
+  //         track_name: track.track_name,
+  //         artist_name: track.artist_name
+  //       })
+  //     });
 
-  // shuffle(array) {
-  //   // this is the Fisher-Yates Algorithm
-  //   for(let i = array.length - 1; i > 0; i--){
-  //     const j = Math.floor(Math.random() * i)
-  //     const temp = array[i]
-  //     array[i] = array[j]
-  //     array[j] = temp
   //   }
-  //   return array
+  //   return playlist.slice(0,10);
   // }
+
+  shuffle(array) {
+    // this is the Fisher-Yates Algorithm
+    for(let i = array.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * i)
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
+    return array
+  }
 
   render() {
     // if (this.state.tracks.length > 0) {
-    let playlist = this.state.tracks.map((track) => (
+    let playlist = this.createCombinedPlaylist();  
+    console.log(playlist)
+    let renderPlaylist = playlist.map((track) => (
           <Track
             track_name={track.track_name}
             artist_name={track.artist_name}
             key={track.id}
           />
         ))
-    
-      // };
-    
 
     const playlistStyle = {
       color: "black",
@@ -141,7 +148,7 @@ class Playlist extends React.Component {
         <h2 style={playlistStyle}>Playlist</h2>
         <div>
         <ul>
-        {playlist}
+        {renderPlaylist}
         </ul>
         </div>
       </div>
