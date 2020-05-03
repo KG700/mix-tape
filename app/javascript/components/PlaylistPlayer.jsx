@@ -11,6 +11,7 @@ class PlaylistPlayer extends React.Component {
     }
     this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
     this.handleShow = this.handleShow.bind(this);
+    // this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +44,13 @@ class PlaylistPlayer extends React.Component {
     });
   }
 
+  // handleBack() {
+  //   this.setState({
+  //     done: false,
+  //     show: true
+  //   });
+  // }
+
   render() {
     let track_id = this.state.playlist_id.player_id
     let track_url ="https://open.spotify.com/embed/playlist/" + track_id
@@ -60,7 +68,8 @@ class PlaylistPlayer extends React.Component {
                   <button type="button" onClick={this.handlerViewPlayer}>Play your Music</button>
                   </form>
                   </>
-                  : <iframe
+                  : <>
+                    <iframe
                           src={track_url}
                           width="300"
                           height="380"
@@ -68,6 +77,8 @@ class PlaylistPlayer extends React.Component {
                           allowtransparency="true"
                           allow="encrypted-media">
                           </iframe>
+                  <button>Generate another playlist!</button>
+                  </>
                   }
                 </>
               )}
