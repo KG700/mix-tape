@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
 import CurrentUser from "./CurrentUser";
+import LogOut from "./LogOut";
 
 class Home extends React.Component {
   constructor(props){
@@ -53,7 +54,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-  
+
     fetch("/api/v1/users.json")
       .then(response => {
         if (response.ok) {
@@ -77,10 +78,12 @@ class Home extends React.Component {
 
     return (
       <div>
-        <CurrentUser 
+        <CurrentUser
           currentUser={this.state.currentUser}
         />
-        
+
+        <LogOut />
+
         <Nav />
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
@@ -94,7 +97,7 @@ class Home extends React.Component {
         />
         </div>
       </div>
-      
+
     );
   }
 }
