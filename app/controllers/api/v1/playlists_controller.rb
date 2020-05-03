@@ -8,7 +8,7 @@ class Api::V1::PlaylistsController < ApplicationController
   def create
     user = RSpotify::User.find(current_user.spotify_id)
     playlist_tracks_ids = params[:playlist]
-    playlist = user.create_playlist!('my-first-playlist')
+    playlist = user.create_playlist!('My Mixtape')
     playlist_tracks = []
     playlist_tracks_ids.each do |track|
       playlist_tracks << RSpotify::Track.find(track)
