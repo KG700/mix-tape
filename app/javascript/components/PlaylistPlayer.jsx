@@ -6,9 +6,11 @@ class PlaylistPlayer extends React.Component {
     super(props)
     this.state = {
       playlist_id: '',
-      done: false
+      done: false,
+      show: true
     }
     this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
+    this.handleShow = this.handleShow.bind(this);
   }
 
   componentDidMount() {
@@ -16,7 +18,8 @@ class PlaylistPlayer extends React.Component {
       fetch("https://jsonplaceholder.typicode.com/posts")
         .then(response => response.json())
           .then(json => this.setState({ done: true }));
-    }, 10000);
+    }, 3500);
+    this.handlerViewPlayer();
   }
 
   handlerViewPlayer() {
@@ -34,10 +37,30 @@ class PlaylistPlayer extends React.Component {
     })
   }
 
+  handleShow() {
+    this.setState({
+      show: false,
+    });
+  }
+
   render() {
     let track_id = this.state.playlist_id.player_id
     let track_url ="https://open.spotify.com/embed/playlist/" + track_id
-    let playlistRender = <iframe
+    return (
+            <div>
+
+              {!this.state.done ? (
+                  <ReactLoading type={"bars"} color={"black"} />
+              ) : (
+                <>
+                  { this.state.show ? 
+                  <>
+                  <p>Your playlist has saved to Spotify</p>
+                  <form onClick={this.handleShow}>
+                  <button type="button" onClick={this.handlerViewPlayer}>Play your Music</button>
+                  </form>
+                  </>
+                  : <iframe
                           src={track_url}
                           width="300"
                           height="380"
@@ -45,18 +68,10 @@ class PlaylistPlayer extends React.Component {
                           allowtransparency="true"
                           allow="encrypted-media">
                           </iframe>
-    return (
-            <div>
-
-              {!this.state.done ? (
-                  <ReactLoading type={"bars"} color={"black"} />
-              ) : (
-                  <>
-                  <button type="button" onClick={this.handlerViewPlayer}>Go to playlist</button>
-                  {playlistRender}
-                  </>
+                  }
+                </>
               )}
-            
+          
             </div>
     )
     
