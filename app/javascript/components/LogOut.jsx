@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from 'react-router-dom'
 
 class LogOut extends React.Component {
   constructor(props) {
@@ -7,12 +6,13 @@ class LogOut extends React.Component {
   }
 
   spotifyLogOut() {
-    window.open('https://www.spotify.com/logout/')
+    return window.open('https://www.spotify.com/logout/')
+    // return (<button onClick={() => window.open('https://www.spotify.com/logout/')}></button>)
   };
 
-  redirectToSignin() {
-    return <Redirect to='/signin' />
-  };
+  // redirectToSignin() {
+  //   window.location.href="http://localhost:3000/signin";
+  // };
 
   render() {
     const buttons = {
@@ -30,8 +30,10 @@ class LogOut extends React.Component {
       <div>
         <form>
           <button
-          onClick={this.redirectToSignin()}
-          style={buttons}>Log Out</button>
+          onClick={this.spotifyLogOut}
+          style={buttons}>
+            Log Out
+          </button>
         </form>
       </div>
     );

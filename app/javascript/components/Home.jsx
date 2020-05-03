@@ -85,7 +85,7 @@ class Home extends React.Component {
         <LogOut />
 
         <Nav />
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}> 
 
         <UserList
           allUsers={this.state.allUsers}
