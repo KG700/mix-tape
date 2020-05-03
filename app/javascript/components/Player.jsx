@@ -6,6 +6,7 @@ class Player extends React.Component {
   }
 
 
+
 render() {
   let track_id = "4AMxwqRTwJMhDBwzlhc3XI"
   let track_url ="https://open.spotify.com/embed/playlist/" + track_id

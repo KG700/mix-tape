@@ -7,12 +7,13 @@ class Playlist extends React.Component {
     super(props);
     this.state = {
       tracks: [],
-      combinedPlaylistIds: []
+      combinedPlaylistIds: [],
+      playlist_id: ''
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
   this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
   }
-  
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.group !== prevProps.group) {
 
@@ -96,10 +97,23 @@ class Playlist extends React.Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken 
+        'X-CSRF-Token': csrfToken
       },
       body: JSON.stringify(data),
-    })
+    }).then(
+      fetch("/api/v1/playlists.json")
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error("Can't find player id")
+      })
+      .then(data => {
+        this.setState({
+          playlist_id: data
+        })
+      })
+    )
   }
 
   render() {
@@ -131,7 +145,7 @@ class Playlist extends React.Component {
         <button onClick={this.createCombinedPlaylist}>Shuffle</button>
 
         <button onClick={this.handlerGeneratePlaylist}>Generate playlist</button>
- 
+
         </div>
       </div>
     );
