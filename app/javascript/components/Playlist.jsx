@@ -3,7 +3,6 @@ import Track from "./Track";
 import PlaylistPreview from "./PlaylistPreview";
 import PlaylistPlayer from "./PlaylistPlayer";
 
-
 class Playlist extends React.Component {
 
   constructor(props){
