@@ -1,5 +1,8 @@
 import React from "react";
 import Track from "./Track";
+import PlaylistPreview from "./PlaylistPreview";
+import PlaylistPlayer from "./PlaylistPlayer";
+
 
 class Playlist extends React.Component {
 
@@ -117,14 +120,14 @@ class Playlist extends React.Component {
   }
 
   render() {
-    let playlist = this.createCombinedPlaylist();
-    let renderPlaylist = playlist.map((track) => (
-          <Track
-            track_name={track.track_name}
-            artist_name={track.artist_name}
-            key={track.id}
-          />
-        ))
+    // let playlist = this.createCombinedPlaylist();
+    // let renderPlaylist = playlist.map((track) => (
+    //       <Track
+    //         track_name={track.track_name}
+    //         artist_name={track.artist_name}
+    //         key={track.id}
+    //       />
+    //     ))
 
     const playlistStyle = {
       color: "black",
@@ -137,17 +140,21 @@ class Playlist extends React.Component {
 
     return(
       <div>
-        <h2 style={playlistStyle}>Playlist</h2>
-        <div>
-        <ul>
-        {renderPlaylist}
-        </ul>
-        <button onClick={this.createCombinedPlaylist}>Shuffle</button>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
-        <button onClick={this.handlerGeneratePlaylist}>Generate playlist</button>
+          <PlaylistPreview
+            playlist={this.createCombinedPlaylist()}
+            shuffle_onClick={this.createCombinedPlaylist}
+            generate_onClick={this.handlerGeneratePlaylist}
+          />
 
+          <PlaylistPlayer
+            playlist_id={this.state.playlist_id}
+          />
         </div>
+
       </div>
+
     );
   }
 

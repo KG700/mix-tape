@@ -4,7 +4,6 @@ import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-import Player from "./Player";
 
 class Home extends React.Component {
   constructor(props){
@@ -93,8 +92,6 @@ class Home extends React.Component {
         <Playlist
           group={this.getSelectedUsers()}
         />
-
-        <Player />
 
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-class Player extends React.Component {
+class PlaylistPlayer extends React.Component {
   constructor(props){
     super(props)
   }
@@ -8,7 +8,7 @@ class Player extends React.Component {
 
 
 render() {
-  let track_id = "4AMxwqRTwJMhDBwzlhc3XI"
+  let track_id = this.props.playlist_id.player_id
   let track_url ="https://open.spotify.com/embed/playlist/" + track_id
 
   return(
@@ -26,4 +26,4 @@ render() {
 
 }
 
-export default Player;
+export default PlaylistPlayer;
