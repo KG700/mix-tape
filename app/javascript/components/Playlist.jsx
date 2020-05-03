@@ -11,11 +11,14 @@ class Playlist extends React.Component {
     this.state = {
       tracks: [],
       combinedPlaylistIds: [],
-      playlist_id: ''
+      playlist_id: '',
+      showPreview: true,
+      showPlayer: false
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
   this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
-  this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
+  this.handleShow = this.handleShow.bind(this);
+  // this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -107,30 +110,15 @@ class Playlist extends React.Component {
     })
   }
 
-  handlerViewPlayer() {
-    fetch("/api/v1/playlists.json")
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw new Error("Can't find player id")
-    })
-    .then(data => {
-      this.setState({
-        playlist_id: data
-      })
-    })
+  handleShow() {
+    console.log("I'm in handleShow")
+    this.setState({
+      showPreview: false,
+      showPlayer: true
+    });
   }
 
   render() {
-    // let playlist = this.createCombinedPlaylist();
-    // let renderPlaylist = playlist.map((track) => (
-    //       <Track
-    //         track_name={track.track_name}
-    //         artist_name={track.artist_name}
-    //         key={track.id}
-    //       />
-    //     ))
 
     const playlistStyle = {
       color: "black",
@@ -145,19 +133,23 @@ class Playlist extends React.Component {
       <div>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
+        {this.state.showPreview &&
           <PlaylistPreview
             playlist={this.createCombinedPlaylist()}
             shuffle_onClick={this.createCombinedPlaylist}
             generate_onClick={this.handlerGeneratePlaylist}
             viewPlayer_onClick={this.handlerViewPlayer}
+            handleShow={this.handleShow}
           />
+        }
 
+        {this.state.showPlayer &&
           <PlaylistPlayer
             playlist_id={this.state.playlist_id}
           />
+        }
+
         </div>
-
-
 
       </div>
 
