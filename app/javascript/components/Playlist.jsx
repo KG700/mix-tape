@@ -110,7 +110,6 @@ class Playlist extends React.Component {
   }
 
   handleShow() {
-    console.log("I'm in handleShow")
     this.setState({
       showPreview: false,
       showPlayer: true
