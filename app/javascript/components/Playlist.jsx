@@ -15,6 +15,7 @@ class Playlist extends React.Component {
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
   this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
+  this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -103,20 +104,22 @@ class Playlist extends React.Component {
         'X-CSRF-Token': csrfToken
       },
       body: JSON.stringify(data),
-    }).then(
-      fetch("/api/v1/playlists.json")
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        throw new Error("Can't find player id")
+    })
+  }
+
+  handlerViewPlayer() {
+    fetch("/api/v1/playlists.json")
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      throw new Error("Can't find player id")
+    })
+    .then(data => {
+      this.setState({
+        playlist_id: data
       })
-      .then(data => {
-        this.setState({
-          playlist_id: data
-        })
-      })
-    )
+    })
   }
 
   render() {
@@ -146,12 +149,15 @@ class Playlist extends React.Component {
             playlist={this.createCombinedPlaylist()}
             shuffle_onClick={this.createCombinedPlaylist}
             generate_onClick={this.handlerGeneratePlaylist}
+            viewPlayer_onClick={this.handlerViewPlayer}
           />
 
           <PlaylistPlayer
             playlist_id={this.state.playlist_id}
           />
         </div>
+
+
 
       </div>
 

@@ -138,7 +138,7 @@ class PlaylistPreview extends React.Component {
 
           <button onClick={this.props.shuffle_onClick}>Shuffle</button>
           <button onClick={this.props.generate_onClick}>Generate playlist</button>
-
+          <button onClick={this.props.viewPlayer_onClick}>Go to playlist</button>
         </div>
       </div>
     );
