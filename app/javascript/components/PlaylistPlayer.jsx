@@ -71,8 +71,8 @@ class PlaylistPlayer extends React.Component {
                   : <>
                     <iframe
                           src={track_url}
-                          width="300"
-                          height="380"
+                          width="400"
+                          height="480"
                           frameBorder="0"
                           allowtransparency="true"
                           allow="encrypted-media">
