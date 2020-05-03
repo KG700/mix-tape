@@ -9,12 +9,8 @@ class LogOut extends React.Component {
     };
   }
 
-  // spotifyLogOut() {
-  //   return window.open('https://www.spotify.com/logout/')
-  //   // return (<button onClick={() => window.open('https://www.spotify.com/logout/')}></button>)
-  // };
-
-  redirectToSignin() {
+  logout() {
+    window.open('https://www.spotify.com/logout/')
     window.location.href="http://localhost:3000/signin";
     this.setState({
       logoutState: true,
@@ -35,7 +31,7 @@ class LogOut extends React.Component {
 
     return (
       <div>
-        <button onClick={this.redirectToSignin}
+        <button onClick={this.logout}
           style={buttons}>
         Logout
         </button>
