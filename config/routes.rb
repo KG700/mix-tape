@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get '/*path' => "home#index"
   # get '/add/playlist', to: 'track#spotify'
 
+  get '/signin', to: 'signin#index'
+
   root "home#index"
 end

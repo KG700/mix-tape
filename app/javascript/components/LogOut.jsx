@@ -1,18 +1,25 @@
 import React from "react";
+import SignIn from "./SignIn";
 
 class LogOut extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      logoutState: false,
+    };
   }
 
-  spotifyLogOut() {
-    return window.open('https://www.spotify.com/logout/')
-    // return (<button onClick={() => window.open('https://www.spotify.com/logout/')}></button>)
-  };
-
-  // redirectToSignin() {
-  //   window.location.href="http://localhost:3000/signin";
+  // spotifyLogOut() {
+  //   return window.open('https://www.spotify.com/logout/')
+  //   // return (<button onClick={() => window.open('https://www.spotify.com/logout/')}></button>)
   // };
+
+  redirectToSignin() {
+    window.location.href="http://localhost:3000/signin";
+    this.setState({
+      logoutState: true,
+    })
+  };
 
   render() {
     const buttons = {
@@ -28,13 +35,14 @@ class LogOut extends React.Component {
 
     return (
       <div>
-        <form>
-          <button
-          onClick={this.spotifyLogOut}
+        <button onClick={this.redirectToSignin}
           style={buttons}>
-            Log Out
-          </button>
-        </form>
+        Logout
+        </button>
+        {this.state.logoutState ?
+          <SignIn /> :
+          null
+        }
       </div>
     );
   }
