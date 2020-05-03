@@ -12,12 +12,13 @@ class Playlist extends React.Component {
       combinedPlaylistIds: [],
       playlist_id: '',
       showPreview: true,
-      showPlayer: false
+      showPlayer: false,
+      shuffleMode: false
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
   this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
   this.handleShow = this.handleShow.bind(this);
-  // this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
+  this.shuffleMode = this.shuffleMode.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -81,7 +82,12 @@ class Playlist extends React.Component {
     newPlaylist.forEach(track => {
       this.state.combinedPlaylistIds.push(track.spotify_track_id)
     })
+    this.state.shuffleMode = false
     return newPlaylist
+  }
+
+  shuffleMode() {
+    this.setState({shuffleMode: true})
   }
 
   shuffle(array) {
@@ -109,6 +115,8 @@ class Playlist extends React.Component {
     })
   }
 
+
+
   handleShow() {
     this.setState({
       showPreview: false,
@@ -134,7 +142,7 @@ class Playlist extends React.Component {
         {this.state.showPreview &&
           <PlaylistPreview
             playlist={this.createCombinedPlaylist()}
-            shuffle_onClick={this.createCombinedPlaylist}
+            shuffle_onClick={this.shuffleMode}
             generate_onClick={this.handlerGeneratePlaylist}
             viewPlayer_onClick={this.handlerViewPlayer}
             handleShow={this.handleShow}

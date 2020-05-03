@@ -6,6 +6,7 @@ class Api::V1::PlaylistsController < ApplicationController
     p "-----index-----"
     p session[:playlist_id]
     render json: {player_id: session[:playlist_id]}
+    
   end
 
   def create
