@@ -18,22 +18,24 @@ class LogOut extends React.Component {
   };
 
   render() {
-    const buttons = {
-      color: "black",
-      border: "solid 4px red",
+    const logout = {
+      backgroundColor: "#01dac5",
       borderRadius: "15px",
-      backgroundColor: "white",
-      margin: "auto",
+      boxShadow: "5px 5px #888888",
+      padding: "8px",
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "1.5rem",
+      fontWeight: 'Bold',
+      color: "black",
       display: "block",
-      padding: "10px",
-      fontSize: "2rem"
+      marginLeft: "5px"
     };
 
     return (
       <div>
         <button onClick={this.logout}
-          style={buttons}>
-        Logout
+          style={logout}>
+        LOGOUT
         </button>
         {this.state.logoutState ?
           <SignIn /> :

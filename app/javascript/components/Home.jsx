@@ -4,6 +4,8 @@ import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
+import './Home.css';
+
 
 class Home extends React.Component {
   constructor(props){
@@ -83,27 +85,35 @@ class Home extends React.Component {
 
   render() {
 
+    const mynav = {
+      backgroundColor: "#ffaa01",
+      height: "75px",
+      padding: "10px",
+      fontSize: "4rem",
+    };
+
     return (
       <div>
 
-        <Nav
-          currentUser={this.state.currentUser}
-        />
+        <div style={mynav}>
+          <Nav
+            currentUser={this.state.currentUser}
+          />
+        </div>
 
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+          <UserList
+            allUsers={this.state.allUsers}
+            showUsers={this.state.showUsers}
+            checkboxFunction={this.handlerUpdateSelectedUsers}
+          />
 
-        <UserList
-          allUsers={this.state.allUsers}
-          showUsers={this.state.showUsers}
-          checkboxFunction={this.handlerUpdateSelectedUsers}
-        />
-
-        <Playlist
-          group={this.getSelectedUsers()}
-          toggleUserList={this.toggleUserList}
-        />
-
+          <Playlist
+            group={this.getSelectedUsers()}
+            toggleUserList={this.toggleUserList}
+          />
         </div>
+
       </div>
 
     );
