@@ -7,17 +7,18 @@ class UsersController < ApplicationController
     if @user
       @user.update(auth_token: spotify_user.credentials.token)
     else
+      p spotify_user.images[0]
       @user = User.create(
         auth_token: spotify_user.credentials.token,
         username: spotify_user.display_name,
         spotify_id: spotify_user.id,
-        image_url: spotify_user.images[0].url
+        image_url: spotify_user.images.empty? ? 'app/assets/images/placeholder-profile.png' : spotify_user.images[0].url
       )
     end
 
     session[:current_user_id] = @user.id
 
-    @tracks = spotify_user.top_tracks(limit: 50, time_range: 'short_term')
+    @tracks = spotify_user.top_tracks(limit: 50, time_range: 'medium_term')
 
     UserTrack.where(user_id: @user.id).destroy_all
 
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
         track_id: @current_track.id
         )
     end
-    
+
     redirect_to root_path
 
   end

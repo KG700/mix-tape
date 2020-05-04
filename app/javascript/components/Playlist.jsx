@@ -1,5 +1,7 @@
 import React from "react";
 import Track from "./Track";
+import PlaylistPreview from "./PlaylistPreview";
+import PlaylistPlayer from "./PlaylistPlayer";
 
 class Playlist extends React.Component {
 
@@ -7,41 +9,36 @@ class Playlist extends React.Component {
     super(props);
     this.state = {
       tracks: [],
-      combinedPlaylistIds: []
+      combinedPlaylistIds: [],
+      playlist_id: '',
+      showPreview: true,
+      showPlayer: false,
+      shuffleMode: false
     }
   this.createCombinedPlaylist = this.createCombinedPlaylist.bind(this);
-
+  this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
+  this.handleShow = this.handleShow.bind(this);
+  this.shuffleMode = this.shuffleMode.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.group !== prevProps.group) {
-      console.log("these are prevProps")
-        console.log(prevProps)
 
       // 1. first remove any tracks of users that aren't in the group anymore:
       if (this.props.group.length < prevProps.group.length) {
         let tracks = this.state.tracks.filter(track => this.props.group.includes(track.user_id))
-        console.log("tracks in playist")
-        console.log(tracks)
-
         return this.setState({
           tracks: tracks
         })
-
       } else {
-
       // 2. then find any users that have been added to the group:
       let newUser;
       if (this.props.group.length > prevProps.group.length) {
-        console.log(this.props.group)
         this.props.group.forEach(user => {
-          console.log(user)
-          console.log(prevProps.group)
           if (!prevProps.group.includes(user)) {
             newUser = user
           }
         })
-        console.log(newUser)
       }
 
       // 3. then do an api call for any new members of the group:
@@ -66,8 +63,7 @@ class Playlist extends React.Component {
 
               let currentTracks = this.state.tracks
               currentTracks.push(newTracks)
-
-                let combinedTracks = currentTracks.flat(Infinity);
+              let combinedTracks = currentTracks.flat(Infinity);
 
               this.setState({
                 tracks: combinedTracks
@@ -75,7 +71,7 @@ class Playlist extends React.Component {
             });
       }
     }
-  }
+    }
   }
 
   createCombinedPlaylist() {
@@ -86,8 +82,12 @@ class Playlist extends React.Component {
     newPlaylist.forEach(track => {
       this.state.combinedPlaylistIds.push(track.spotify_track_id)
     })
-
+    this.state.shuffleMode = false
     return newPlaylist
+  }
+
+  shuffleMode() {
+    this.setState({shuffleMode: true})
   }
 
   shuffle(array) {
@@ -101,16 +101,30 @@ class Playlist extends React.Component {
     return array
   }
 
+  handlerGeneratePlaylist() {
+    const data = { playlist: this.state.combinedPlaylistIds};
+    const csrfToken = document.querySelector("[name='csrf-token']").content;
+
+    fetch("/api/v1/playlists.json", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify(data),
+    })
+  }
+
+
+
+  handleShow() {
+    this.setState({
+      showPreview: false,
+      showPlayer: true
+    });
+  }
+
   render() {
-    let playlist = this.createCombinedPlaylist();
-    console.log(playlist)
-    let renderPlaylist = playlist.map((track) => (
-          <Track
-            track_name={track.track_name}
-            artist_name={track.artist_name}
-            key={track.id}
-          />
-        ))
 
     const playlistStyle = {
       color: "black",
@@ -123,19 +137,30 @@ class Playlist extends React.Component {
 
     return(
       <div>
-        <h2 style={playlistStyle}>Playlist</h2>
-        <div>
-        <ul>
-        {renderPlaylist}
-        </ul>
-        <form action='/add/playlist'>
-          <button>Generate playlist</button>
-        </form>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+
+        {this.state.showPreview &&
+          <PlaylistPreview
+            playlist={this.createCombinedPlaylist()}
+            shuffle_onClick={this.shuffleMode}
+            generate_onClick={this.handlerGeneratePlaylist}
+            viewPlayer_onClick={this.handlerViewPlayer}
+            handleShow={this.handleShow}
+          />
+        }
+
+        {this.state.showPlayer &&
+          <PlaylistPlayer
+            playlist_id={this.state.playlist_id}
+          />
+        }
+
         </div>
+
       </div>
+
     );
   }
-
 
 }
 

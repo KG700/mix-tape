@@ -1,2 +1,3 @@
 class CurrentUserController < ApplicationController
+
 end
