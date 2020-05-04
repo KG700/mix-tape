@@ -23,8 +23,7 @@ class Playlist extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.group !== prevProps.group) {
-
+    if (this.props.group.length !== prevProps.group.length) {
       // 1. first remove any tracks of users that aren't in the group anymore:
       if (this.props.group.length < prevProps.group.length) {
         let tracks = this.state.tracks.filter(track => this.props.group.includes(track.user_id))
@@ -121,6 +120,7 @@ class Playlist extends React.Component {
       showPreview: false,
       showPlayer: true
     });
+    this.props.toggleUserList();
   }
 
   handleBack(){
@@ -128,6 +128,7 @@ class Playlist extends React.Component {
       showPreview: true,
       showPlayer: false
     });
+    this.props.toggleUserList();
   }
 
   render() {

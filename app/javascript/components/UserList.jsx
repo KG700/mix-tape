@@ -32,14 +32,18 @@ class UserList extends React.Component {
     };
 
     return(
-      <div>
-        <h2 style={friends}>Friends</h2>
+      <>
+      {this.props.showUsers &&
         <div>
-          <form>
-            {allUsers}
-          </form>
+          <h2 style={friends}>Friends</h2>
+          <div>
+            <form>
+              {allUsers}
+            </form>
+          </div>
         </div>
-      </div>
+      }
+      </>
     );
   }
 

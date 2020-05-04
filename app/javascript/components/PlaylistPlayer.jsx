@@ -11,7 +11,6 @@ class PlaylistPlayer extends React.Component {
     }
     this.handlerViewPlayer = this.handlerViewPlayer.bind(this);
     this.handleShow = this.handleShow.bind(this);
-    // this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidMount() {
@@ -43,13 +42,6 @@ class PlaylistPlayer extends React.Component {
       show: false,
     });
   }
-
-  // handleBack() {
-  //   this.setState({
-  //     done: false,
-  //     show: true
-  //   });
-  // }
 
   render() {
     let track_id = this.state.playlist_id.player_id
