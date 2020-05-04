@@ -113,6 +113,17 @@ class Playlist extends React.Component {
       },
       body: JSON.stringify(data),
     })
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      throw new Error("Network response was not ok.")
+    })
+    .then(data => {
+      this.setState({
+        playlist_id: data.player_id
+      })  
+    })
   }
 
   handleShow() {
@@ -132,15 +143,6 @@ class Playlist extends React.Component {
   }
 
   render() {
-
-    const playlistStyle = {
-      color: "black",
-      border: "solid 4px red",
-      borderRadius: "15px",
-      backgroundColor: "white",
-      padding: "10px",
-      fontSize: "2rem"
-    };
 
     return(
       <div>
