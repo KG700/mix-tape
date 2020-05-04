@@ -28,7 +28,7 @@ class LogOut extends React.Component {
       fontWeight: 'Bold',
       color: "black",
       display: "block",
-      marginLeft: "5px"
+      marginLeft: "10px"
     };
 
     return (
