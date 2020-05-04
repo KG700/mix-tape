@@ -11,7 +11,7 @@ class LogOut extends React.Component {
 
   logout() {
     window.open('https://www.spotify.com/logout/')
-    window.location.href="http://localhost:3000/signin";
+    window.location.pathname="/logout";
     this.setState({
       logoutState: true,
     })
