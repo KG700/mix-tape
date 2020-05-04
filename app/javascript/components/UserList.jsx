@@ -16,7 +16,13 @@ class UserList extends React.Component {
   }
 
   render() {
-    const allUsers = this.props.allUsers.map((user) => (
+    const allUsers = this.props.allUsers.filter(users => {
+      if (users.username.toLowerCase().includes(this.state.search.toLoweCase()) && this.state.search !==) {
+        return users
+      }
+    })
+
+    .map((user) => (
       <Checkbox
         id={user.id}
         name={user.username}
