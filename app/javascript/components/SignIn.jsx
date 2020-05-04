@@ -13,7 +13,7 @@ class SignIn extends React.Component {
       boxShadow: "5px 10px #888888",
       marginTop: "50%",
       display: "block",
-      padding: "10px", 
+      padding: "10px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
       fontWeight: 'Bold',
@@ -21,7 +21,7 @@ class SignIn extends React.Component {
     };
 
     return (
-      
+
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         <form action='/auth/spotify'>
