@@ -13,11 +13,51 @@ To build an app using React and Rails that combines selected users' top tracks i
 
 ## Installation instructions
 
+### To install dependencies
 
+On the root of the project, run:
+
+```
+$ bundle install
+```
+this will install our dependencies
+
+### To set up DataBase
+
+If you do not have Postgresql installed 
+
+On the root of the project create the database by running:
+
+```
+$ rails db:create
+```
+this will create the database
+
+Next we will need to create the tables.
+
+On the root of the project, run:
+
+```
+$ rails db:migrate
+```
+
+Congratulations! Your database is now setup!
+
+### `Running the application`
+
+To run the application, run the following command in the root of the project and enjoy :)
+
+```
+$ puma
+```
 
 ## Running tests
 
+To run the tests, make sure you are in the root of the project and run:
 
+```
+$ rspec
+```
 
 ## Tech stack
 Ruby on Rails
@@ -39,7 +79,9 @@ Rubocop
 
 ## Challenges
 
-* Spotify authentication
+* Spotify authentication and scopes
 * Rails environmental variables
+* Generating a playlist shows the previous playlist generated because of get/post request order issue.
+* Deployment to Heroku - adding environmental variables to Heroku and changing the procfile to profile.dev
 
 ## Further development
