@@ -1,3 +1,3 @@
-class CurrentUserController < ApplicationController
+class CurrentuserController < ApplicationController
 
 end
