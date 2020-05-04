@@ -5,6 +5,14 @@ class UserList extends React.Component {
 
   constructor(props){
     super(props);
+    this.state {
+      search: null
+    }
+  }
+
+  searchSpace(event) {
+    let keyword = event.target.value;
+    this.setState({search: keyword})
   }
 
   render() {
