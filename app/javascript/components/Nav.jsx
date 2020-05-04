@@ -1,4 +1,6 @@
 import React from "react";
+import CurrentUser from "./CurrentUser";
+import LogOut from "./LogOut";
 
 class Nav extends React.Component {
   constructor(props){
@@ -21,8 +23,10 @@ class Nav extends React.Component {
 
     return (
       <div>
-      <h1 style={mynav}>Welcome to MixTape!</h1>
-      <p style={myfont}> Bringing people and music together</p>
+        <CurrentUser
+          currentUser={this.props.currentUser}
+        />
+        <LogOut />
       </div>
     );
   }
