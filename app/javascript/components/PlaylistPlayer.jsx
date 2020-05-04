@@ -77,7 +77,7 @@ class PlaylistPlayer extends React.Component {
                           allowtransparency="true"
                           allow="encrypted-media">
                           </iframe>
-                  <button>Generate another playlist!</button>
+                  <button onClick={this.props.handleBack}>Generate another playlist!</button>
                   </>
                   }
                 </>

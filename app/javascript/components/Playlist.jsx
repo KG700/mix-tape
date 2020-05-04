@@ -19,6 +19,7 @@ class Playlist extends React.Component {
   this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
   this.handleShow = this.handleShow.bind(this);
   this.shuffleMode = this.shuffleMode.bind(this);
+  this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -115,12 +116,17 @@ class Playlist extends React.Component {
     })
   }
 
-
-
   handleShow() {
     this.setState({
       showPreview: false,
       showPlayer: true
+    });
+  }
+
+  handleBack(){
+    this.setState({
+      showPreview: true,
+      showPlayer: false
     });
   }
 
@@ -152,6 +158,7 @@ class Playlist extends React.Component {
         {this.state.showPlayer &&
           <PlaylistPlayer
             playlist_id={this.state.playlist_id}
+            handleBack={this.handleBack}
           />
         }
 
