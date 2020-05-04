@@ -53,7 +53,7 @@ class PlaylistPlayer extends React.Component {
                   <ReactLoading type={"bars"} color={"black"} />
               ) : (
                 <>
-                  { this.state.show ? 
+                  { this.state.show ?
                   <>
                   <p>Your playlist has saved to Spotify</p>
                   <form onClick={this.handleShow}>
@@ -74,10 +74,10 @@ class PlaylistPlayer extends React.Component {
                   }
                 </>
               )}
-          
+
             </div>
     )
-    
+
   }
 
 }

@@ -1,12 +1,12 @@
 class Api::V1::PlaylistsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
 
   def index
     p "-----index-----"
     p session[:playlist_id]
-    render json: {player_id: session[:playlist_id]}
-    
+
+    render json: {player_id: current_user.playlist_id}
   end
 
   def create
@@ -23,6 +23,11 @@ class Api::V1::PlaylistsController < ApplicationController
       playlist_tracks << RSpotify::Track.find(track)
     end
     playlist.add_tracks!(playlist_tracks)
+
+    current_user.playlist_id = playlist.id
+    current_user.save!
+
+    render json: {player_id: current_user.playlist_id}
   end
 
 end
