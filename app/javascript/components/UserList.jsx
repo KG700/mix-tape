@@ -8,6 +8,7 @@ class UserList extends React.Component {
   }
 
   render() {
+    
     const allUsers = this.props.allUsers.map((user) => (
       <Checkbox
         id={user.id}
@@ -32,6 +33,7 @@ class UserList extends React.Component {
     };
 
     return(
+      
       <>
       {this.props.showUsers &&
         <div>
@@ -46,7 +48,6 @@ class UserList extends React.Component {
       </>
     );
   }
-
 
 }
 

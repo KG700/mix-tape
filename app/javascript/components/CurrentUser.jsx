@@ -16,9 +16,7 @@ class CurrentUser extends React.Component {
 
     return (
       
-        <img src={profilePicture} style={img} alt="ProfilePicture"  />
-     
-        
+      <img src={profilePicture} style={img} alt="ProfilePicture"  />   
     );
   }
 }
