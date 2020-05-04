@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-import CurrentUser from "./CurrentUser";
-import LogOut from "./LogOut";
 
 class Home extends React.Component {
   constructor(props){
@@ -78,14 +76,12 @@ class Home extends React.Component {
 
     return (
       <div>
-        <CurrentUser
+
+        <Nav
           currentUser={this.state.currentUser}
         />
 
-        <LogOut />
-
-        <Nav />
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}> 
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         <UserList
           allUsers={this.state.allUsers}
