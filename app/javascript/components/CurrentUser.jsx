@@ -12,7 +12,7 @@ class CurrentUser extends React.Component {
     return (
       <div>
         {userName}
-        <img src={profilePicture} alt="ProfilePicture" height="42" width="42" /> 
+        <img src={profilePicture} alt="ProfilePicture" height="42" width="42" />
       </div>
     );
   }

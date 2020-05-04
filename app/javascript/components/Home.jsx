@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
@@ -10,9 +11,11 @@ class Home extends React.Component {
     this.state = {
       currentUser: {},
       allUsers: [],
+      showUsers: true
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
     this.getSelectedUsers = this.getSelectedUsers.bind(this);
+    this.toggleUserList = this.toggleUserList.bind(this);
   }
 
   handlerUpdateSelectedUsers(event) {
@@ -51,6 +54,12 @@ class Home extends React.Component {
     return specificUser;
   }
 
+  toggleUserList(){
+    this.setState(state => ({
+      showUsers: !state.showUsers
+    }))
+  }
+
   componentDidMount() {
 
     fetch("/api/v1/users.json")
@@ -85,12 +94,15 @@ class Home extends React.Component {
 
         <UserList
           allUsers={this.state.allUsers}
+          showUsers={this.state.showUsers}
           checkboxFunction={this.handlerUpdateSelectedUsers}
         />
 
         <Playlist
           group={this.getSelectedUsers()}
+          toggleUserList={this.toggleUserList}
         />
+
         </div>
       </div>
 
