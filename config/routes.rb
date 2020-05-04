@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
 
   get '/auth/spotify/callback', to: 'users#spotify'
+  get '/signin', to: 'signin#index'
+  get '/logout', to: 'currentuser#destroy'
+
   get '/*path' => "home#index"
   # get '/add/playlist', to: 'track#spotify'
 

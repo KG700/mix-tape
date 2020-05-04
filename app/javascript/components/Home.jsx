@@ -85,11 +85,11 @@ class Home extends React.Component {
 
     return (
       <div>
-        <CurrentUser
+
+        <Nav
           currentUser={this.state.currentUser}
         />
 
-        <Nav />
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         <UserList
