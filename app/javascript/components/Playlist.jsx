@@ -19,11 +19,11 @@ class Playlist extends React.Component {
   this.handlerGeneratePlaylist = this.handlerGeneratePlaylist.bind(this);
   this.handleShow = this.handleShow.bind(this);
   this.shuffleMode = this.shuffleMode.bind(this);
+  this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.group !== prevProps.group) {
-
+    if (this.props.group.length !== prevProps.group.length) {
       // 1. first remove any tracks of users that aren't in the group anymore:
       if (this.props.group.length < prevProps.group.length) {
         let tracks = this.state.tracks.filter(track => this.props.group.includes(track.user_id))
@@ -115,13 +115,20 @@ class Playlist extends React.Component {
     })
   }
 
-
-
   handleShow() {
     this.setState({
       showPreview: false,
       showPlayer: true
     });
+    this.props.toggleUserList();
+  }
+
+  handleBack(){
+    this.setState({
+      showPreview: true,
+      showPlayer: false
+    });
+    this.props.toggleUserList();
   }
 
   render() {
@@ -152,6 +159,7 @@ class Playlist extends React.Component {
         {this.state.showPlayer &&
           <PlaylistPlayer
             playlist_id={this.state.playlist_id}
+            handleBack={this.handleBack}
           />
         }
 
