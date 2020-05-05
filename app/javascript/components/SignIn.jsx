@@ -11,6 +11,15 @@ class SignIn extends React.Component {
 
     const container = {
       display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around", 
+      marginLeft: "auto", 
+      marginRight: "auto",
+      marginTop: "80px"
+    }
+
+    const containerColumn = {
+      display: "flex", 
       flexDirection: "column", 
       alignItems: "center", 
       justifyContent: "space-around"
@@ -22,7 +31,7 @@ class SignIn extends React.Component {
       justifyContent: "space-around", 
       marginLeft: "auto", 
       marginRight: "auto",
-      marginTop: "80px"
+      marginTop: "50px"
     };
 
     const logo = {
@@ -42,10 +51,12 @@ class SignIn extends React.Component {
 
     const text = {
       fontFamily: 'Audiowide, Verdana',
-      fontSize: "2rem",
-      // fontWeight: 'Bold',
+      fontSize: "1.5rem",
+      textAlign: "center",
       color: "black",
-      listStyle: "none"
+      listStyle: "none",
+      textTransform: "uppercase",
+      letterSpacing: "0.1em"
     }
 
     const signinButton = {
@@ -55,6 +66,7 @@ class SignIn extends React.Component {
       display: "block",
       marginLeft: "auto",
       marginRight: "auto",
+      marginTop: "20px",
       padding: "10px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
@@ -63,8 +75,8 @@ class SignIn extends React.Component {
     };
 
     return (
-
-      <div style={container}>
+    <div style={container}>
+      <div style={containerColumn}>
         <div style={logoContainer}> 
           <p style={logo}> MIX </p>
           <img src={LogoImg} style={img} alt="LogoPicture"  />
@@ -79,6 +91,7 @@ class SignIn extends React.Component {
           <button style={signinButton}> SIGN IN WITH SPOTIFY </button>
         </form>
       </div>
+    </div>
     );
   }
 }
