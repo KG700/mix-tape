@@ -37,7 +37,7 @@ class Group extends React.Component {
     const group = this.props.selectedUsers.map(user => {
       const profilePic = this.defaultPic(user);
       return (
-        <img src={user.image_url} alt="ProfilePicture" style={groupImg} />
+        <img src={profilePic} alt="ProfilePicture" style={groupImg} />
       )
     })
 
