@@ -7,6 +7,34 @@ Contributors: [Karla Gardiner](https://github.com/KG700), [Lila Walker](https://
 ## Specification
 To build an app using React and Rails that combines selected users' top tracks in Spotify to create a new playlist that then plays in the browser. Potentially a chat function.
 
+## User Stories
+
+```
+As a user
+So that I can collaborate my music with friends
+I would like to sign up to Mix Tape with my Spotify account
+
+As a user
+So that I can mix my top songs with my friends' top songs
+I would like to select my friends from a list of users
+
+As a user
+So that I can reshuffle our collaborated playlist
+I would like to mix until I am happy with my playlist
+
+As a user
+So that I can listen our collaborated songs
+I would like to play to the playlist in the Spotify player
+
+As a user
+So that I can generate a new playlist
+I would like to go back to select new friends
+
+As a user
+So that I can be sure my account is secure
+I would like to log out using my Spotify account
+```
+
 ## Planning
 
 
@@ -24,7 +52,7 @@ this will install our dependencies
 
 ### To set up DataBase
 
-If you do not have Postgresql installed 
+If you do not have Postgresql installed
 
 On the root of the project create the database by running:
 
