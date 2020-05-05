@@ -17,6 +17,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require 'Helpers/controller_helpers'
+require 'rubygems'
 
 # This stops simplecov from testing the coverage in these files
 SimpleCov.start 'rails' do
