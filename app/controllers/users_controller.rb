@@ -7,12 +7,12 @@ class UsersController < ApplicationController
     if @user
       @user.update(auth_token: spotify_user.credentials.token)
     else
-      p spotify_user.images[0]
+      # p spotify_user.images[0]
       @user = User.create(
         auth_token: spotify_user.credentials.token,
         username: spotify_user.display_name,
         spotify_id: spotify_user.id,
-        image_url: spotify_user.images.empty? ? 'app/assets/images/placeholder-profile.png' : spotify_user.images[0].url
+        image_url: spotify_user.images.empty? ? 'default' : spotify_user.images[0].url
       )
     end
 
