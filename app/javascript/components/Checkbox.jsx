@@ -8,14 +8,14 @@ class Checkbox extends React.Component {
   render() {
 
     return (
-      <div  >
+      <div>
         <input
           name={this.props.id}
           type="checkbox"
           checked={this.props.checked}
           onChange={this.props.onChange}
         />
-        {this.props.name}
+        &nbsp;{this.props.name}
       </div>
     );
   }
