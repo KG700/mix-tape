@@ -22,7 +22,8 @@ class SignIn extends React.Component {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around"
+      justifyContent: "flex-start",
+      marginTop: "25px"
     }
 
     const logoContainer = {
@@ -30,8 +31,7 @@ class SignIn extends React.Component {
       flexDirection: "row",
       justifyContent: "space-around",
       marginLeft: "auto",
-      marginRight: "auto",
-      marginTop: "25px"
+      marginRight: "auto"
     };
 
     const logo = {
