@@ -21,21 +21,21 @@ class PlaylistPreview extends React.Component {
         ))
 
     const container = {
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       justifyContent: "flex-start",
       minWidth: "300px",
       maxWidth: "600px"
     }
-    
+
     const title = {
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
       fontWeight: 'Bold',
       color: "black",
       display: 'block',
-      marginBottom: "15px"
+      marginBottom: "10px"
     };
 
     const listContainer = {
@@ -46,7 +46,7 @@ class PlaylistPreview extends React.Component {
 
     const trackList = {
       height: "400px",
-      overflow: "hidden", 
+      overflow: "hidden",
       overflowY: "scroll",
       listStyle: "none",
       fontFamily: 'Audiowide, Verdana',
@@ -55,8 +55,8 @@ class PlaylistPreview extends React.Component {
     }
 
     const buttonsContainer = {
-      display: "flex", 
-      flexDirection: "row", 
+      display: "flex",
+      flexDirection: "row",
       justifyContent: "space-around",
       marginTop: "20px"
     }
@@ -87,16 +87,16 @@ class PlaylistPreview extends React.Component {
     }
 
     return(
-      
+
       <div style={container}>
-        
+
         <h2 style={title}>PLAYLIST</h2>
-        
+
         <div style={listContainer}>
           <ul style={trackList}>
             {renderPlaylist}
           </ul>
-        </div>  
+        </div>
 
         <div style={buttonsContainer}>
           <button onClick={this.props.shuffle_onClick} style={mixButton}>
@@ -106,7 +106,7 @@ class PlaylistPreview extends React.Component {
           <form onClick={this.props.generate_onClick}>
             <button type="button" onClick={this.props.handleShow} style={playButton}>
               PLAY
-            </button> 
+            </button>
           </form>
         </div>
       </div>

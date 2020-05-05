@@ -31,10 +31,10 @@ class PlaylistPlayer extends React.Component {
     }
 
     const groupContainer = {
-      display: "flex", 
+      display: "flex",
       flexDirection: "row",
       justifyContent: "space-around",
-      marginBottom: "20px"
+      marginBottom: "10px"
     }
 
     const player = {
@@ -63,13 +63,13 @@ class PlaylistPlayer extends React.Component {
         <ReactLoading type={"bars"} color={"black"} />
         ) : (
         <>
-        
+
         <div style={groupContainer}>
           <Group
             selectedUsers = {this.props.selectedUsers}
           />
         </div>
-        
+
         <iframe style={player}
           src={track_url}
           width="400"
@@ -78,7 +78,7 @@ class PlaylistPlayer extends React.Component {
           allowtransparency="true"
           allow="encrypted-media">
         </iframe>
-        
+
         <button onClick={this.props.handleBack} style={mixAgainButton}>
           MIX AGAIN
         </button>
