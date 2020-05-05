@@ -25,9 +25,9 @@ class SignIn extends React.Component {
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         <form action='/auth/spotify'>
-          <input type="button" style={button} value="SIGN IN WITH SPOTIFY" />
+          <button style={button}> SIGN IN WITH SPOTIFY </button>
         </form>
-        
+
       </div>
     );
   }
