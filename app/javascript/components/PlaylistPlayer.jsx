@@ -49,6 +49,8 @@ class PlaylistPlayer extends React.Component {
       marginTop: "20px"
     }
 
+    // needs extra styling
+
     return (
 
       <div style={container}>
