@@ -51,30 +51,33 @@ class UserList extends React.Component {
       display: "flex", 
       flexDirection: "column", 
       alignItems: "center", 
-      justifyContent: "flex-start"
+      justifyContent: "flex-start",
+      minWidth: "300px",
+      maxWidth: "600px"
     }
 
     const title = {
+      display: 'block',
+      marginBottom: "15px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
       fontWeight: 'Bold',
-      color: "black",
-      display: 'block',
-      marginBottom: "15px"
+      color: "black"
     };
 
     const listContainer = {
-      backgroundColor: "black",
-      borderRadius: "8px",
       padding: "10px",
-      width: "100%"
+      backgroundColor: "black",
+      borderRadius: "8px"
     }
 
     const placeHolder = {
-      backgroundColor: "#01dac5",
+      width: "90%",
+      marginBottom: "10px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "1rem",
-      color: "#6416b9"
+      letterSpacing: "0.1em",
+      color: "black"
     }
 
     const usersList = {
@@ -84,14 +87,18 @@ class UserList extends React.Component {
       listStyle: "none",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "1rem",
-      color: "#ffaa01"
+      letterSpacing: "0.1em",
+      color: "#ffaa01",
+      marginLeft: "5px"
     }
 
     const groupContainer = {
       display: "flex", 
-      flexDirection: "row", 
+      flexDirection: "row",
       justifyContent: "space-around",
-      marginTop: "20px"
+      marginTop: "20px",
+      minWidth: "300px",
+      maxWidth: "300px"
     }
 
     return(

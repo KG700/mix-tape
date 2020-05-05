@@ -10,7 +10,7 @@ class LogOut extends React.Component {
   }
 
   logout() {
-    window.open('https://www.spotify.com/logout/', 'Spotify Logout', 'height=400, width=400, left=500, top=250')
+    window.open('https://www.spotify.com/logout/', 'Spotify Logout', 'height=400, width=400')
     window.location.pathname="/logout";
     this.setState({
       logoutState: true,

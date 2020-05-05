@@ -1,16 +1,26 @@
 import React from "react";
+import Default from '../../assets/images/default-profile.png';
 
 class Group extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
+    this.defaultPic = this.defaultPic.bind(this)
   }
 
+  defaultPic(user) {
+    if (user.image_url === 'default') {
+      return Default
+    } else {
+      return user.image_url
+    };
+  }
 
   render() {
 
     const container = {
-      display: "flex",
-      flexDirection: "row",
+      display: "flex", 
+      flexDirection: "row", 
+      flexWrap: "wrap", 
       justifyContent: "space-around",
       marginTop: "20px"
     }
@@ -19,12 +29,15 @@ class Group extends React.Component {
       borderRadius: '50%',
       height: "60px",
       width: "60px",
-      border: "solid 2px black"
+      border: "solid 2px black",
+      marginLeft: "5px",
+      marginRight: "5px"
     };
 
     const group = this.props.selectedUsers.map(user => {
+      const profilePic = this.defaultPic(user);
       return (
-        <img src={user.image_url} alt="ProfilePicture" style={groupImg} />
+        <img src={profilePic} alt="ProfilePicture" style={groupImg} />
       )
     })
 
