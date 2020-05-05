@@ -43,13 +43,19 @@ class UserList extends React.Component {
       />
     ));
 
-    const friends = {
+    const container = {
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "flex-start"
+    }
+
+    const title = {
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "2rem",
+      fontWeight: 'Bold',
       color: "black",
-      border: "solid 4px red",
-      borderRadius: "15px",
-      backgroundColor: "white",
-      padding: "10px",
-      fontSize: "2rem"
+      display: 'block'
     };
 
     const friendList = {
@@ -60,8 +66,8 @@ class UserList extends React.Component {
 
       <>
       {this.props.showUsers &&
-        <div>
-          <h2 style={friends}>Friends</h2>
+        <div style={container}>
+          <h2 style={title}>FRIENDS</h2>
           <div>
             <input type="text" placeholder="Search for friends" onChange={(event) => this.searchSpace(event)} />
             <form>
