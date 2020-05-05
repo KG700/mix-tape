@@ -11,6 +11,7 @@ class Group extends React.Component {
     const container = {
       display: "flex", 
       flexDirection: "row", 
+      flexWrap: "wrap", 
       justifyContent: "space-around",
       marginTop: "20px"
     }
@@ -19,7 +20,9 @@ class Group extends React.Component {
       borderRadius: '50%',
       height: "60px",
       width: "60px",
-      border: "solid 2px black"
+      border: "solid 2px black",
+      marginLeft: "5px",
+      marginRight: "5px"
     };
 
     const group = this.props.selectedUsers.map(user => {

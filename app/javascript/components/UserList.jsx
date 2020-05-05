@@ -65,7 +65,8 @@ class UserList extends React.Component {
     };
 
     const listContainer = {
-      width: "100%",
+      width: "60%",
+      minWidth: "300px",
       padding: "10px",
       backgroundColor: "black",
       borderRadius: "8px"
@@ -92,9 +93,10 @@ class UserList extends React.Component {
 
     const groupContainer = {
       display: "flex", 
-      flexDirection: "row", 
+      flexDirection: "row",
       justifyContent: "space-around",
-      marginTop: "20px"
+      marginTop: "20px",
+      width: "60%",
     }
 
     const checkbox = {
