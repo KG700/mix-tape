@@ -51,7 +51,9 @@ class UserList extends React.Component {
       display: "flex", 
       flexDirection: "column", 
       alignItems: "center", 
-      justifyContent: "flex-start"
+      justifyContent: "flex-start",
+      minWidth: "300px",
+      maxWidth: "600px"
     }
 
     const title = {
@@ -64,8 +66,6 @@ class UserList extends React.Component {
     };
 
     const listContainer = {
-      width: "70%",
-      minWidth: "300px",
       padding: "10px",
       backgroundColor: "black",
       borderRadius: "8px"
@@ -97,7 +97,8 @@ class UserList extends React.Component {
       flexDirection: "row",
       justifyContent: "space-around",
       marginTop: "20px",
-      width: "60%",
+      minWidth: "300px",
+      maxWidth: "300px"
     }
 
     return(
