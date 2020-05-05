@@ -114,9 +114,12 @@ class Home extends React.Component {
     };
 
     const container = {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-around"
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around",
+      maxHeight: "40%",
+      marginTop: '30px',
+      marginBottom: "30px"
     }
 
     return (
