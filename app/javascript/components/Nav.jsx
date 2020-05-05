@@ -1,7 +1,7 @@
 import React from "react";
 import CurrentUser from "./CurrentUser";
 import LogOut from "./LogOut";
-import './Nav.css';
+import Logo from "./Logo";
 
 class Nav extends React.Component {
   constructor(props){
@@ -10,8 +10,15 @@ class Nav extends React.Component {
 
   render() {
 
+    const container = {
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "flex-end"
+    }
+
     return (
-      <div style = {{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
+      <div style = {container}>
+        <Logo />
         <CurrentUser
           currentUser={this.props.currentUser}
         />

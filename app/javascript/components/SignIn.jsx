@@ -1,5 +1,6 @@
 import React from "react";
 import './SignIn.css';
+import LogoImg from '../images/logo-bold.png';
 
 class SignIn extends React.Component {
   constructor(props){
@@ -7,12 +8,53 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const button = {
+
+    const container = {
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center", 
+      justifyContent: "space-around"
+    }
+
+    const logoContainer = {
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around", 
+      marginLeft: "auto", 
+      marginRight: "auto",
+      marginTop: "80px"
+    };
+
+    const logo = {
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "8rem",
+      fontWeight: 'Bold',
+      color: "black",
+      display: 'block'
+    };
+
+    const img = {
+      height: "100px",
+      width: "150px",
+      marginTop: 'auto',
+      marginBottom: 'auto'
+    }
+
+    const text = {
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "2rem",
+      // fontWeight: 'Bold',
+      color: "black",
+      listStyle: "none"
+    }
+
+    const signinButton = {
       backgroundColor: "#01dac5",
       borderRadius: "15px",
       boxShadow: "5px 10px #888888",
-      marginTop: "50%",
       display: "block",
+      marginLeft: "auto",
+      marginRight: "auto",
       padding: "10px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
@@ -22,10 +64,19 @@ class SignIn extends React.Component {
 
     return (
 
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
-
+      <div style={container}>
+        <div style={logoContainer}> 
+          <p style={logo}> MIX </p>
+          <img src={LogoImg} style={img} alt="LogoPicture"  />
+          <p style={logo}> TAPE </p>
+        </div>
+        <ul style={text}>
+          <li>Select friends to share music with</li>
+          <li>Mix until you are happy with the playlist</li>
+          <li>Press Play to save and listen!</li>
+        </ul>
         <form action='/auth/spotify'>
-          <button style={button}> SIGN IN WITH SPOTIFY </button>
+          <button style={signinButton}> SIGN IN WITH SPOTIFY </button>
         </form>
       </div>
     );
