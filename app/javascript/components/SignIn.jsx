@@ -10,26 +10,26 @@ class SignIn extends React.Component {
   render() {
 
     const container = {
-      display: "flex", 
-      flexDirection: "row", 
-      justifyContent: "space-around", 
-      marginLeft: "auto", 
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginLeft: "auto",
       marginRight: "auto",
-      marginTop: "80px"
+      marginTop: "50px"
     }
 
     const containerColumn = {
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       justifyContent: "space-around"
     }
 
     const logoContainer = {
-      display: "flex", 
-      flexDirection: "row", 
-      justifyContent: "space-around", 
-      marginLeft: "auto", 
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginLeft: "auto",
       marginRight: "auto",
       marginTop: "50px"
     };
@@ -77,7 +77,7 @@ class SignIn extends React.Component {
     return (
     <div style={container}>
       <div style={containerColumn}>
-        <div style={logoContainer}> 
+        <div style={logoContainer}>
           <p style={logo}> MIX </p>
           <img src={LogoImg} style={img} alt="LogoPicture"  />
           <p style={logo}> TAPE </p>

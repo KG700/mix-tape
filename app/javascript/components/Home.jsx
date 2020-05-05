@@ -112,7 +112,7 @@ class Home extends React.Component {
 
     const mynav = {
       backgroundColor: "#ffaa01",
-      height: "75px",
+      height: "50px",
       padding: "10px",
       fontSize: "4rem",
     };
@@ -121,7 +121,7 @@ class Home extends React.Component {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-around",
-      marginTop: '30px',
+      marginTop: '10px',
       marginBottom: "30px"
     }
 
