@@ -8,7 +8,7 @@ class Checkbox extends React.Component {
   render() {
 
     return (
-      <div >
+      <div  >
         <input
           name={this.props.id}
           type="checkbox"
