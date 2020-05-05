@@ -1,12 +1,22 @@
 import React from "react";
+import Default from '../../assets/images/default.png';
 
 class CurrentUser extends React.Component {
   constructor(props) {
     super(props)
+    this.defaultPic = this.defaultPic.bind(this);
+  }
+
+  defaultPic() {
+    if (this.props.currentUser.image_url === 'default') {
+      return Default
+    } else {
+      return this.props.currentUser.image_url
+    };
   }
 
   render() {
-    const profilePicture = this.props.currentUser.image_url;
+    const profilePic = this.defaultPic()
     const img = {
       borderRadius: '50%',
       height: "60px",
@@ -15,8 +25,8 @@ class CurrentUser extends React.Component {
     };
 
     return (
-      
-      <img src={profilePicture} style={img} alt="ProfilePicture"  />   
+    
+      <img src={profilePic} style={img} alt="ProfilePicture"  /> 
     );
   }
 }

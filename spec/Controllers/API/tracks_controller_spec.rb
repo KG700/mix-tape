@@ -10,6 +10,17 @@ RSpec.describe Api::V1::TracksController, type: :controller do
     end
   end
 
+  # let(:user) { double :user}
+  # let(:track) { double :track }
+
+  # before do
+  #   allow(Track).to receive(:all).and_return(track)
+  # end
+    
+  # it 'should have an empty json response' do
+  #   expect(JSON.parse(response.body)).to eq(track)
+  # end
+
   # context "when there are no tracks in the database" do
 
   #   let(:user) { double :user}
