@@ -16,7 +16,7 @@ class Home extends React.Component {
       showUsers: true
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
-    this.getSelectedUsers = this.getSelectedUsers.bind(this);
+    this.getSelectedUsersIds = this.getSelectedUsersIds.bind(this);
     this.toggleUserList = this.toggleUserList.bind(this);
   }
 
@@ -35,6 +35,10 @@ class Home extends React.Component {
   };
 
   getSelectedUsers() {
+    return this.state.allUsers.filter(user => user.selected)
+  }
+
+  getSelectedUsersIds() {
     let selectedUsers = this.state.allUsers.filter(user => user.selected)
     if (selectedUsers.length == 0) {
       return selectedUsers
@@ -63,7 +67,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-
+    console.log("getting currentUser from database")
     fetch("/api/v1/users.json")
       .then(response => {
         if (response.ok) {
@@ -81,9 +85,30 @@ class Home extends React.Component {
         throw new Error("Network response was not ok.")
       })
       .then(data => { this.setState({ currentUser: data }) });
+
   };
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (typeof this.state.currentUser !== 'undefined' && typeof this.state.allUsers !== 'undefined') {
+      if (prevState.currentUser !== this.state.currentUser) {
+        console.log("updating selected user tracks")
+        const users = [...this.state.allUsers]
+        let user = this.findUser(this.state.currentUser.id)
+        let index = this.state.allUsers.indexOf(user)
+
+        user.selected = true
+        users[index] = user
+
+        this.setState(({
+          allUsers: users,
+        }))
+      }
+    }
+  }
+
   render() {
+
+    let selectedUsers = this.state.allUsers.filter(user => user.selected)
 
     const mynav = {
       backgroundColor: "#ffaa01",
@@ -91,6 +116,14 @@ class Home extends React.Component {
       padding: "10px",
       fontSize: "4rem",
     };
+
+    const container = {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginTop: '30px',
+      marginBottom: "30px"
+    }
 
     return (
       <div>
@@ -101,14 +134,18 @@ class Home extends React.Component {
           />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+        <div style={container}>
           <UserList
+            currentUser={this.state.currentUser}
             allUsers={this.state.allUsers}
             showUsers={this.state.showUsers}
             checkboxFunction={this.handlerUpdateSelectedUsers}
+            selectedUsers={selectedUsers}
           />
 
           <Playlist
+            currentUser={this.state.currentUser.id}
+            groupIds={this.getSelectedUsersIds()}
             group={this.getSelectedUsers()}
             toggleUserList={this.toggleUserList}
           />

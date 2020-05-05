@@ -1,5 +1,6 @@
 import React from "react";
 import ReactLoading from "react-loading";
+import Group from "./Group";
 
 class PlaylistPlayer extends React.Component {
   constructor(props){
@@ -18,28 +19,62 @@ class PlaylistPlayer extends React.Component {
   }
 
   render() {
+
     let track_id = this.props.playlist_id
     let track_url ="https://open.spotify.com/embed/playlist/" + track_id
+
+    const container = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "flex-start"
+    }
+
+    const player = {
+      backgroundColor: "black",
+      borderRadius: "8px",
+      padding: "10px"
+    }
+
+    const mixAgainButton = {
+      backgroundColor: "#01dac5",
+      borderRadius: "15px",
+      boxShadow: "5px 5px #888888",
+      padding: "8px",
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "1.5rem",
+      fontWeight: 'Bold',
+      color: "black",
+      display: "block",
+      marginTop: "20px"
+    }
+
+    // needs extra styling
+
     return (
-            <div>
 
-              {!this.state.done ? (
-                  <ReactLoading type={"bars"} color={"black"} />
-              ) : (
-                <>
-                  <iframe
-                    src={track_url}
-                    width="400"
-                    height="480"
-                    frameBorder="0"
-                    allowtransparency="true"
-                    allow="encrypted-media">
-                  </iframe>
-                  <button onClick={this.props.handleBack}>Generate another playlist!</button>
-                </>
-              )}
-
-            </div>
+      <div style={container}>
+        {!this.state.done ? (
+        <ReactLoading type={"bars"} color={"black"} />
+        ) : (
+        <>
+        <Group
+          selectedUsers = {this.props.selectedUsers}
+        />
+          <iframe style={player}
+            src={track_url}
+            width="400"
+            height="480"
+            frameBorder="0"
+            allowtransparency="true"
+            allow="encrypted-media">
+          </iframe>
+          <button onClick={this.props.handleBack} style={mixAgainButton}>
+            MIX AGAIN
+          </button>
+        </>
+        )}
+      </div>
     )
   }
 

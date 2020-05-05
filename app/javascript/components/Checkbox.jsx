@@ -15,7 +15,7 @@ class Checkbox extends React.Component {
           checked={this.props.checked}
           onChange={this.props.onChange}
         />
-        {this.props.name}
+        &nbsp;{this.props.name}
       </div>
     );
   }

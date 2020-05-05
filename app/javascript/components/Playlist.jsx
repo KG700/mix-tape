@@ -2,6 +2,7 @@ import React from "react";
 import Track from "./Track";
 import PlaylistPreview from "./PlaylistPreview";
 import PlaylistPlayer from "./PlaylistPlayer";
+import Group from "./Group";
 
 class Playlist extends React.Component {
 
@@ -23,26 +24,27 @@ class Playlist extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.group.length !== prevProps.group.length) {
+
+    if (this.props.groupIds.length !== prevProps.groupIds.length) {
       // 1. first remove any tracks of users that aren't in the group anymore:
-      if (this.props.group.length < prevProps.group.length) {
-        let tracks = this.state.tracks.filter(track => this.props.group.includes(track.user_id))
+      if (this.props.groupIds.length < prevProps.groupIds.length) {
+        let tracks = this.state.tracks.filter(track => this.props.groupIds.includes(track.user_id))
         return this.setState({
           tracks: tracks
         })
       } else {
       // 2. then find any users that have been added to the group:
       let newUser;
-      if (this.props.group.length > prevProps.group.length) {
-        this.props.group.forEach(user => {
-          if (!prevProps.group.includes(user)) {
+      if (this.props.groupIds.length > prevProps.groupIds.length) {
+        this.props.groupIds.forEach(user => {
+          if (!prevProps.groupIds.includes(user)) {
             newUser = user
           }
         })
       }
 
       // 3. then do an api call for any new members of the group:
-      if (this.props.group.length == 0) {
+      if (this.props.groupIds.length == 0) {
         this.setState({
           tracks: [],
         })
@@ -122,7 +124,7 @@ class Playlist extends React.Component {
     .then(data => {
       this.setState({
         playlist_id: data.player_id
-      })  
+      })
     })
   }
 
@@ -146,7 +148,6 @@ class Playlist extends React.Component {
 
     return(
       <div>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         {this.state.showPreview &&
           <PlaylistPreview
@@ -162,10 +163,11 @@ class Playlist extends React.Component {
           <PlaylistPlayer
             playlist_id={this.state.playlist_id}
             handleBack={this.handleBack}
+            selectedUsers = {this.props.group}
           />
         }
 
-        </div>
+
 
       </div>
 

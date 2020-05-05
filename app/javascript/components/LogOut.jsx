@@ -10,7 +10,7 @@ class LogOut extends React.Component {
   }
 
   logout() {
-    window.open('https://www.spotify.com/logout/', 'Spotify Logout', 'height=400, width=400, left=500, top=250')
+    window.open('https://www.spotify.com/logout/', 'Spotify Logout', 'height=400, width=400')
     window.location.pathname="/logout";
     this.setState({
       logoutState: true,
@@ -18,7 +18,7 @@ class LogOut extends React.Component {
   };
 
   render() {
-    const logout = {
+    const logoutButton = {
       backgroundColor: "#01dac5",
       borderRadius: "15px",
       boxShadow: "5px 5px #888888",
@@ -28,13 +28,13 @@ class LogOut extends React.Component {
       fontWeight: 'Bold',
       color: "black",
       display: "block",
-      marginLeft: "5px"
+      marginLeft: "10px"
     };
 
     return (
       <div>
         <button onClick={this.logout}
-          style={logout}>
+          style={logoutButton}>
         LOGOUT
         </button>
         {this.state.logoutState ?
