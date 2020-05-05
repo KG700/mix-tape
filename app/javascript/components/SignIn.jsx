@@ -38,7 +38,7 @@ class SignIn extends React.Component {
       marginTop: 'auto',
       marginBottom: 'auto'
     }
-    const button = {
+    const signinButton = {
       backgroundColor: "#01dac5",
       borderRadius: "15px",
       boxShadow: "5px 10px #888888",
@@ -61,7 +61,7 @@ class SignIn extends React.Component {
           <p style={logo}> TAPE </p>
         </div>
         <form action='/auth/spotify'>
-          <button style={button}> SIGN IN WITH SPOTIFY </button>
+          <button style={signinButton}> SIGN IN WITH SPOTIFY </button>
         </form>
       </div>
     );
