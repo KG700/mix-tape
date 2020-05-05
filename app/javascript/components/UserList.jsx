@@ -63,22 +63,56 @@ class UserList extends React.Component {
       marginBottom: "15px"
     };
 
+    const listContainer = {
+      backgroundColor: "black",
+      borderRadius: "8px",
+      padding: "10px",
+      width: "100%"
+    }
+
+    const placeHolder = {
+      backgroundColor: "#01dac5",
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "1rem",
+      color: "#6416b9"
+    }
+
+    const usersList = {
+      height: "200px",
+      overflow: "hidden", 
+      overflowY: "scroll",
+      listStyle: "none",
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "1rem",
+      color: "#ffaa01"
+    }
+
+    const groupContainer = {
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around",
+      marginTop: "20px"
+    }
+
     return(
 
       <>
       {this.props.showUsers &&
         <div style={container}>
+          
           <h2 style={title}>FRIENDS</h2>
-          <div>
-            <input type="text" placeholder="Search for friends" onChange={(event) => this.searchSpace(event)} />
+          
+          <div style={listContainer}>
+            <input type="text" placeholder="Search for friends" style={placeHolder} onChange={(event) => this.searchSpace(event)} />
             <form>
-              {allUsers}
+              <p style={usersList}>{allUsers}</p>
             </form>
+          </div>
 
+          <div style={groupContainer}>
             <Group
               selectedUsers = {this.props.selectedUsers}
             />
-
           </div>
         </div>
       }
