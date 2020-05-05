@@ -7,16 +7,33 @@ class UserList extends React.Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      search: null
+    }
+  }
+
+  searchSpace(event) {
+    let keyword = event.target.value;
+    this.setState({search: keyword})
   }
 
   render() {
-    
-    const allUsers = this.props.allUsers.map((user) => (
+
+    const allUsers = this.props.allUsers.filter(users => {
+      if (this.state.search == null) {
+        return users
+      }
+      else if (users.username.toLowerCase().includes(this.state.search.toLowerCase()) && this.state.search !== '') {
+        return users
+      }
+  }).map((user) => (
+
       // <Option
       //   id={user.id}
       //   name={user.username}
       //   image={user.image_url}
       // />
+
       <Checkbox
         id={user.id}
         name={user.username}
@@ -46,6 +63,7 @@ class UserList extends React.Component {
         <div>
           <h2 style={friends}>Friends</h2>
           <div>
+            <input type="text" placeholder="Search for friends" onChange={(event) => this.searchSpace(event)} />
             <form>
               {allUsers}
             </form>
