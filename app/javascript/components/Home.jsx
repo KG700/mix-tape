@@ -94,6 +94,12 @@ class Home extends React.Component {
       fontSize: "4rem",
     };
 
+    const container = {
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around"
+    }
+
     return (
       <div>
 
@@ -103,8 +109,7 @@ class Home extends React.Component {
           />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
-
+        <div style={container}>
           <UserList
             currentUser={this.state.currentUser}
             allUsers={this.state.allUsers}
