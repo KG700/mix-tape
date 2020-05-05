@@ -32,13 +32,15 @@ class PlaylistPreview extends React.Component {
       fontSize: "2rem",
       fontWeight: 'Bold',
       color: "black",
-      display: 'block'
+      display: 'block',
+      marginBottom: "15px"
     };
 
     const listContainer = {
       backgroundColor: "black",
       borderRadius: "8px",
-      padding: "10px"
+      padding: "10px",
+      width: "70%"
     }
 
     const trackList = {

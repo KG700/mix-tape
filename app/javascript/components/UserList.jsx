@@ -59,7 +59,8 @@ class UserList extends React.Component {
       fontSize: "2rem",
       fontWeight: 'Bold',
       color: "black",
-      display: 'block'
+      display: 'block',
+      marginBottom: "15px"
     };
 
     return(
