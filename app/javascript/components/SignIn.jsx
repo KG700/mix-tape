@@ -82,9 +82,9 @@ class SignIn extends React.Component {
     <div>
       <div style={containerColumn}>
         <div style={logoContainer}>
-          <p style={logo}> MIX </p>
+          <h2 style={logo}> MIX </h2>
           <img src={LogoImg} style={img} alt="LogoPicture"  />
-          <p style={logo}> TAPE </p>
+          <h2 style={logo}> TAPE </h2>
         </div>
         <div style={textContainer}>
           <ul style={text}>
