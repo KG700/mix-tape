@@ -8,20 +8,31 @@ class Group extends React.Component {
 
   render() {
 
+    const container = {
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around",
+      marginTop: "20px"
+    }
+
+    const groupImg = {
+      borderRadius: '50%',
+      height: "60px",
+      width: "60px",
+      border: "solid 2px black"
+    };
+
     const group = this.props.selectedUsers.map(user => {
       return (
-        <li>
-          <img src={user.image_url} alt="ProfilePicture" height="42" width="42" />
-          {user.username}
-        </li>
+        <img src={user.image_url} alt="ProfilePicture" style={groupImg} />
       )
     })
 
     return (
 
-      <ul>
+      <div style={container}>
         {group}
-      </ul>
+      </div>
 
     )
   }

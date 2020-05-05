@@ -58,10 +58,6 @@ class UserList extends React.Component {
       display: 'block'
     };
 
-    const friendList = {
-      listStyleType: "none"
-    };
-
     return(
 
       <>
