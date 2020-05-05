@@ -85,12 +85,20 @@ class Home extends React.Component {
 
   render() {
 
+    let selectedUsers = this.state.allUsers.filter(user => user.selected)
+
     const mynav = {
       backgroundColor: "#ffaa01",
       height: "75px",
       padding: "10px",
       fontSize: "4rem",
     };
+
+    const container = {
+      display: "flex", 
+      flexDirection: "row", 
+      justifyContent: "space-around"
+    }
 
     return (
       <div>
@@ -101,11 +109,13 @@ class Home extends React.Component {
           />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+        <div style={container}>
           <UserList
+            currentUser={this.state.currentUser}
             allUsers={this.state.allUsers}
             showUsers={this.state.showUsers}
             checkboxFunction={this.handlerUpdateSelectedUsers}
+            selectedUsers={selectedUsers}
           />
 
           <Playlist

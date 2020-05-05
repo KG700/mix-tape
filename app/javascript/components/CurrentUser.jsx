@@ -6,10 +6,17 @@ class CurrentUser extends React.Component {
   }
 
   render() {
-    const profilePicture = this.props.currentUser.image_url
+    const profilePicture = this.props.currentUser.image_url;
+    const img = {
+      borderRadius: '50%',
+      height: "60px",
+      width: "60px",
+      border: "solid 2px black" 
+    };
 
     return (
-        <img src={profilePicture} alt="ProfilePicture" height="42" width="42" />
+      
+      <img src={profilePicture} style={img} alt="ProfilePicture"  />   
     );
   }
 }
