@@ -8,7 +8,7 @@ class UserList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      search: null
+      search: ''
     }
   }
 
@@ -20,7 +20,7 @@ class UserList extends React.Component {
   render() {
 
     const allUsers = this.props.allUsers.filter(users => {
-      if (this.state.search == null) {
+      if (this.state.search == '') {
         return users
       }
       else if (users.username.toLowerCase().includes(this.state.search.toLowerCase()) && this.state.search !== '') {
@@ -57,7 +57,7 @@ class UserList extends React.Component {
     };
 
     return(
-      
+
       <>
       {this.props.showUsers &&
         <div>
