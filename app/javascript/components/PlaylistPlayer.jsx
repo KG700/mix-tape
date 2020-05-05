@@ -1,5 +1,6 @@
 import React from "react";
 import ReactLoading from "react-loading";
+import Group from "./Group";
 
 class PlaylistPlayer extends React.Component {
   constructor(props){
@@ -18,14 +19,14 @@ class PlaylistPlayer extends React.Component {
   }
 
   render() {
-    
+
     let track_id = this.props.playlist_id
     let track_url ="https://open.spotify.com/embed/playlist/" + track_id
 
     const container = {
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       justifyContent: "flex-start"
     }
 
@@ -47,14 +48,19 @@ class PlaylistPlayer extends React.Component {
       display: "block",
       marginTop: "20px"
     }
-    
+
+    // needs extra styling
+
     return (
-      
+
       <div style={container}>
         {!this.state.done ? (
         <ReactLoading type={"bars"} color={"black"} />
         ) : (
         <>
+        <Group
+          selectedUsers = {this.props.selectedUsers}
+        />
           <iframe style={player}
             src={track_url}
             width="400"

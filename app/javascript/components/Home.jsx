@@ -16,7 +16,7 @@ class Home extends React.Component {
       showUsers: true
     }
     this.handlerUpdateSelectedUsers = this.handlerUpdateSelectedUsers.bind(this);
-    this.getSelectedUsers = this.getSelectedUsers.bind(this);
+    this.getSelectedUsersIds = this.getSelectedUsersIds.bind(this);
     this.toggleUserList = this.toggleUserList.bind(this);
   }
 
@@ -35,6 +35,10 @@ class Home extends React.Component {
   };
 
   getSelectedUsers() {
+    return this.state.allUsers.filter(user => user.selected)
+  }
+
+  getSelectedUsersIds() {
     let selectedUsers = this.state.allUsers.filter(user => user.selected)
     if (selectedUsers.length == 0) {
       return selectedUsers
@@ -114,8 +118,8 @@ class Home extends React.Component {
     };
 
     const container = {
-      display: "flex", 
-      flexDirection: "row", 
+      display: "flex",
+      flexDirection: "row",
       justifyContent: "space-around",
       marginTop: '30px',
       marginBottom: "30px"
@@ -141,6 +145,7 @@ class Home extends React.Component {
 
           <Playlist
             currentUser={this.state.currentUser.id}
+            groupIds={this.getSelectedUsersIds()}
             group={this.getSelectedUsers()}
             toggleUserList={this.toggleUserList}
           />
