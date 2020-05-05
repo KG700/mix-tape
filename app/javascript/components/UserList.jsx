@@ -65,7 +65,7 @@ class UserList extends React.Component {
     };
 
     const listContainer = {
-      width: "60%",
+      width: "70%",
       minWidth: "300px",
       padding: "10px",
       backgroundColor: "black",

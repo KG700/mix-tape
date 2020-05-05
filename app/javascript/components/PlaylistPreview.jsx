@@ -40,7 +40,8 @@ class PlaylistPreview extends React.Component {
       backgroundColor: "black",
       borderRadius: "8px",
       padding: "10px",
-      width: "70%"
+      width: "70%",
+      minWidth: "300px"
     }
 
     const trackList = {
