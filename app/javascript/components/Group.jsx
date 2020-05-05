@@ -1,5 +1,5 @@
 import React from "react";
-import Default from '../../assets/images/default.png';
+import Default from '../../assets/images/default-profile.png';
 
 class Group extends React.Component {
   constructor(props){

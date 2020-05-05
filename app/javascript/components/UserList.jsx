@@ -44,7 +44,6 @@ class UserList extends React.Component {
         checked={user.selected}
         onChange={this.props.checkboxFunction}
         key={user.id}
-        style={checkbox}
       />
     ));
 
@@ -52,7 +51,9 @@ class UserList extends React.Component {
       display: "flex", 
       flexDirection: "column", 
       alignItems: "center", 
-      justifyContent: "flex-start"
+      justifyContent: "flex-start",
+      minWidth: "300px",
+      maxWidth: "600px"
     }
 
     const title = {
@@ -65,8 +66,6 @@ class UserList extends React.Component {
     };
 
     const listContainer = {
-      width: "60%",
-      minWidth: "300px",
       padding: "10px",
       backgroundColor: "black",
       borderRadius: "8px"
@@ -75,10 +74,10 @@ class UserList extends React.Component {
     const placeHolder = {
       width: "90%",
       marginBottom: "10px",
-      backgroundColor: "#01dac5",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "1rem",
-      color: "#6416b9"
+      letterSpacing: "0.1em",
+      color: "black"
     }
 
     const usersList = {
@@ -88,7 +87,9 @@ class UserList extends React.Component {
       listStyle: "none",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "1rem",
-      color: "#ffaa01"
+      letterSpacing: "0.1em",
+      color: "#ffaa01",
+      marginLeft: "5px"
     }
 
     const groupContainer = {
@@ -96,20 +97,8 @@ class UserList extends React.Component {
       flexDirection: "row",
       justifyContent: "space-around",
       marginTop: "20px",
-      width: "60%",
-    }
-
-    const checkbox = {
-      width: '16px',
-      height: '16px',
-      borderRadius: '100%',
-
-      // transition: 'all .5s ease',
-      // cursor: 'pointer',
-      // position: 'absolute',
-      // top: '-3px',
-      // left: '-3px',
-      background: 'white'
+      minWidth: "300px",
+      maxWidth: "300px"
     }
 
     return(

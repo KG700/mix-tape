@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     @user = User.find_by(spotify_id: spotify_user.id)
     if @user
-      @user.update(auth_token: spotify_user.credentials.token, image_url: spotify_user.images[0].url)
+      @user.update(auth_token: spotify_user.credentials.token)
     else
       # p spotify_user.images[0]
       @user = User.create(
