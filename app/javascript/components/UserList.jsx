@@ -44,6 +44,7 @@ class UserList extends React.Component {
         checked={user.selected}
         onChange={this.props.checkboxFunction}
         key={user.id}
+        style={checkbox}
       />
     ));
 
@@ -55,22 +56,24 @@ class UserList extends React.Component {
     }
 
     const title = {
+      display: 'block',
+      marginBottom: "15px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
       fontWeight: 'Bold',
-      color: "black",
-      display: 'block',
-      marginBottom: "15px"
+      color: "black"
     };
 
     const listContainer = {
-      backgroundColor: "black",
-      borderRadius: "8px",
+      width: "100%",
       padding: "10px",
-      width: "100%"
+      backgroundColor: "black",
+      borderRadius: "8px"
     }
 
     const placeHolder = {
+      width: "90%",
+      marginBottom: "10px",
       backgroundColor: "#01dac5",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "1rem",
@@ -92,6 +95,19 @@ class UserList extends React.Component {
       flexDirection: "row", 
       justifyContent: "space-around",
       marginTop: "20px"
+    }
+
+    const checkbox = {
+      width: '16px',
+      height: '16px',
+      borderRadius: '100%',
+
+      // transition: 'all .5s ease',
+      // cursor: 'pointer',
+      // position: 'absolute',
+      // top: '-3px',
+      // left: '-3px',
+      background: 'white'
     }
 
     return(
