@@ -9,8 +9,8 @@ class Group extends React.Component {
   render() {
 
     const container = {
-      display: "flex", 
-      flexDirection: "row", 
+      display: "flex",
+      flexDirection: "row",
       justifyContent: "space-around",
       marginTop: "20px"
     }
