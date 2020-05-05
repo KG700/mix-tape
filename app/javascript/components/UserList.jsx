@@ -20,6 +20,10 @@ class UserList extends React.Component {
   render() {
 
     const allUsers = this.props.allUsers.filter(users => {
+      if (users.id !== this.props.currentUser.id) {
+        return users
+      }
+    }).filter(users => {
       if (this.state.search == '') {
         return users
       }
