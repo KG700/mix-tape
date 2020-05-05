@@ -68,7 +68,8 @@ class UserList extends React.Component {
     const listContainer = {
       padding: "10px",
       backgroundColor: "black",
-      borderRadius: "8px"
+      borderRadius: "8px",
+      marginBottom: "20px"
     }
 
     const placeHolder = {
