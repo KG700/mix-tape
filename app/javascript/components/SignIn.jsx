@@ -9,14 +9,14 @@ class SignIn extends React.Component {
 
   render() {
 
-    const container = {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-around",
-      marginLeft: "auto",
-      marginRight: "auto",
-      marginTop: "50px"
-    }
+    // const container = {
+    //   display: "flex",
+    //   flexDirection: "row",
+    //   justifyContent: "space-around",
+    //   marginLeft: "auto",
+    //   marginRight: "auto",
+    //   marginTop: "50px"
+    // }
 
     const containerColumn = {
       display: "flex",
@@ -75,7 +75,7 @@ class SignIn extends React.Component {
     };
 
     return (
-    <div style={container}>
+    <div>
       <div style={containerColumn}>
         <div style={logoContainer}>
           <p style={logo}> MIX </p>

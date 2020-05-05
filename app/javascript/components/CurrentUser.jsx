@@ -19,14 +19,14 @@ class CurrentUser extends React.Component {
     const profilePic = this.defaultPic()
     const img = {
       borderRadius: '50%',
-      height: "60px",
-      width: "60px",
-      border: "solid 2px black" 
+      height: "50px",
+      width: "50px",
+      border: "solid 2px black"
     };
 
     return (
-    
-      <img src={profilePic} style={img} alt="ProfilePicture"  /> 
+
+      <img src={profilePic} style={img} alt="ProfilePicture"  />
     );
   }
 }
