@@ -1,5 +1,7 @@
 import React from "react";
 import Checkbox from './Checkbox';
+import Option from './Option';
+import Group from './Group'
 
 class UserList extends React.Component {
 
@@ -10,6 +12,11 @@ class UserList extends React.Component {
   render() {
     
     const allUsers = this.props.allUsers.map((user) => (
+      // <Option
+      //   id={user.id}
+      //   name={user.username}
+      //   image={user.image_url}
+      // />
       <Checkbox
         id={user.id}
         name={user.username}
@@ -42,6 +49,11 @@ class UserList extends React.Component {
             <form>
               {allUsers}
             </form>
+
+            <Group
+              selectedUsers = {this.props.selectedUsers}
+            />
+
           </div>
         </div>
       }
