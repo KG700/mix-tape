@@ -2,7 +2,7 @@ import React from "react";
 import './SignIn.css';
 
 class SignIn extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
@@ -25,8 +25,9 @@ class SignIn extends React.Component {
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
 
         <form action='/auth/spotify'>
-          <button style={button}> SIGN IN WITH SPOTIFY </button>
+          <input type="button" style={button} value="SIGN IN WITH SPOTIFY" />
         </form>
+        
       </div>
     );
   }
