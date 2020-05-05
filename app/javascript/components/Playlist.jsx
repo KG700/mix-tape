@@ -147,7 +147,6 @@ class Playlist extends React.Component {
 
     return(
       <div>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}></div>
 
         {this.state.showPreview &&
           <PlaylistPreview
