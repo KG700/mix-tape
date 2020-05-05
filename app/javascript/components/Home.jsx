@@ -63,7 +63,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-
+    console.log("getting currentUser from database")
     fetch("/api/v1/users.json")
       .then(response => {
         if (response.ok) {
@@ -81,7 +81,26 @@ class Home extends React.Component {
         throw new Error("Network response was not ok.")
       })
       .then(data => { this.setState({ currentUser: data }) });
+
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (typeof this.state.currentUser !== 'undefined' && typeof this.state.allUsers !== 'undefined') {
+      if (prevState.currentUser !== this.state.currentUser) {
+        console.log("updating selected user tracks")
+        const users = [...this.state.allUsers]
+        let user = this.findUser(this.state.currentUser.id)
+        let index = this.state.allUsers.indexOf(user)
+
+        user.selected = true
+        users[index] = user
+
+        this.setState(({
+          allUsers: users,
+        }))
+      }
+    }
+  }
 
   render() {
 
@@ -97,7 +116,9 @@ class Home extends React.Component {
     const container = {
       display: "flex", 
       flexDirection: "row", 
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      marginTop: '30px',
+      marginBottom: "30px"
     }
 
     return (
@@ -119,6 +140,7 @@ class Home extends React.Component {
           />
 
           <Playlist
+            currentUser={this.state.currentUser.id}
             group={this.getSelectedUsers()}
             toggleUserList={this.toggleUserList}
           />

@@ -23,6 +23,7 @@ class Playlist extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    
     if (this.props.group.length !== prevProps.group.length) {
       // 1. first remove any tracks of users that aren't in the group anymore:
       if (this.props.group.length < prevProps.group.length) {
@@ -122,7 +123,7 @@ class Playlist extends React.Component {
     .then(data => {
       this.setState({
         playlist_id: data.player_id
-      })  
+      })
     })
   }
 
@@ -146,7 +147,6 @@ class Playlist extends React.Component {
 
     return(
       <div>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}></div>
 
         {this.state.showPreview &&
           <PlaylistPreview
@@ -165,7 +165,7 @@ class Playlist extends React.Component {
           />
         }
 
-       
+
 
       </div>
 

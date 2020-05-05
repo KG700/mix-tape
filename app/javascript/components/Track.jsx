@@ -6,10 +6,28 @@ class Track extends React.Component {
   }
 
   render() {
+    let artistName = this.props.artist_name
+    let trackName = this.props.track_name
 
+    const trackStyle = {
+      color: "#ffaa01",
+      display: "inline-block",
+      textTransform: "uppercase"
+    }
+
+    const artistStyle = {
+      color: "#f9672b",
+      display: "inline-block"
+    }
+
+    const dashStyle = {
+      color: "#6416b9",
+      display: "inline-block"
+    }
+    
     return (
       <li>
-        {this.props.track_name}: {this.props.artist_name}
+        <p style={trackStyle}>{trackName}</p> <p style={dashStyle}> ■ </p> <p style={artistStyle}>{artistName} </p>
       </li>
     );
   }
