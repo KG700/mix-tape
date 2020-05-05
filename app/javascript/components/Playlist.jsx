@@ -2,7 +2,7 @@ import React from "react";
 import Track from "./Track";
 import PlaylistPreview from "./PlaylistPreview";
 import PlaylistPlayer from "./PlaylistPlayer";
-import Group from "./Group"
+import Group from "./Group";
 
 class Playlist extends React.Component {
 
@@ -149,10 +149,6 @@ class Playlist extends React.Component {
     return(
       <div>
 
-        <Group
-          selectedUsers = {this.props.group}
-        />
-
         {this.state.showPreview &&
           <PlaylistPreview
             playlist={this.createCombinedPlaylist()}
@@ -167,6 +163,7 @@ class Playlist extends React.Component {
           <PlaylistPlayer
             playlist_id={this.state.playlist_id}
             handleBack={this.handleBack}
+            selectedUsers = {this.props.group}
           />
         }
 
