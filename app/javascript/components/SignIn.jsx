@@ -21,7 +21,8 @@ class SignIn extends React.Component {
       flexDirection: "row", 
       justifyContent: "space-around", 
       marginLeft: "auto", 
-      marginRight: "auto"
+      marginRight: "auto",
+      marginTop: "80px"
     };
 
     const logo = {
@@ -38,6 +39,15 @@ class SignIn extends React.Component {
       marginTop: 'auto',
       marginBottom: 'auto'
     }
+
+    const text = {
+      fontFamily: 'Audiowide, Verdana',
+      fontSize: "2rem",
+      // fontWeight: 'Bold',
+      color: "black",
+      listStyle: "none"
+    }
+
     const signinButton = {
       backgroundColor: "#01dac5",
       borderRadius: "15px",
@@ -60,6 +70,11 @@ class SignIn extends React.Component {
           <img src={LogoImg} style={img} alt="LogoPicture"  />
           <p style={logo}> TAPE </p>
         </div>
+        <ul style={text}>
+          <li>Select friends to share music with</li>
+          <li>Mix until you are happy with the playlist</li>
+          <li>Press Play to save and listen!</li>
+        </ul>
         <form action='/auth/spotify'>
           <button style={signinButton}> SIGN IN WITH SPOTIFY </button>
         </form>
