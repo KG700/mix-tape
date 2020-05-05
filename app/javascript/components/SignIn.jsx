@@ -3,7 +3,7 @@ import './SignIn.css';
 import LogoImg from '../images/logo-bold.png';
 
 class SignIn extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
@@ -90,6 +90,7 @@ class SignIn extends React.Component {
         <form action='/auth/spotify'>
           <button style={signinButton}> SIGN IN WITH SPOTIFY </button>
         </form>
+
       </div>
     </div>
     );
