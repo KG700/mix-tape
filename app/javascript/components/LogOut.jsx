@@ -18,7 +18,7 @@ class LogOut extends React.Component {
   };
 
   render() {
-    const logout = {
+    const logoutButton = {
       backgroundColor: "#01dac5",
       borderRadius: "15px",
       boxShadow: "5px 5px #888888",
@@ -28,13 +28,13 @@ class LogOut extends React.Component {
       fontWeight: 'Bold',
       color: "black",
       display: "block",
-      marginLeft: "5px"
+      marginLeft: "10px"
     };
 
     return (
       <div>
         <button onClick={this.logout}
-          style={logout}>
+          style={logoutButton}>
         LOGOUT
         </button>
         {this.state.logoutState ?
