@@ -1,11 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-import './Home.css';
-
 
 class Home extends React.Component {
   constructor(props){
@@ -114,7 +110,7 @@ class Home extends React.Component {
       backgroundColor: "#ffaa01",
       height: "50px",
       padding: "10px",
-      fontSize: "4rem",
+      fontSize: "4rem"
     };
 
     const container = {

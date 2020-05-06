@@ -1,5 +1,4 @@
 import React from "react";
-import './SignIn.css';
 import LogoImg from '../images/logo-bold.png';
 
 class SignIn extends React.Component {
