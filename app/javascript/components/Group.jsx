@@ -12,7 +12,7 @@ class Group extends React.Component {
       return Default
     } else {
       return user.image_url
-    };
+    }
   }
 
   render() {
@@ -45,10 +45,8 @@ class Group extends React.Component {
       <div style={container}>
         {group}
       </div>
-
     )
   }
-
 }
 
 export default Group;

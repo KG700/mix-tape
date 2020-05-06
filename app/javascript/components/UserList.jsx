@@ -1,6 +1,6 @@
 import React from "react";
 import Checkbox from './Checkbox';
-import Option from './Option';
+// import Option from './Option';
 import Group from './Group'
 
 class UserList extends React.Component {
@@ -127,7 +127,6 @@ class UserList extends React.Component {
       </>
     );
   }
-
 }
 
 export default UserList;

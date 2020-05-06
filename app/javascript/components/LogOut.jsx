@@ -15,7 +15,7 @@ class LogOut extends React.Component {
     this.setState({
       logoutState: true,
     })
-  };
+  }
 
   render() {
     const logoutButton = {

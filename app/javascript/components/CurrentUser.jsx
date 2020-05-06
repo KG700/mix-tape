@@ -12,7 +12,7 @@ class CurrentUser extends React.Component {
       return Default
     } else {
       return this.props.currentUser.image_url
-    };
+    }
   }
 
   render() {

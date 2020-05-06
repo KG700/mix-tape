@@ -87,7 +87,6 @@ class PlaylistPlayer extends React.Component {
       </div>
     )
   }
-
 }
 
 export default PlaylistPlayer;

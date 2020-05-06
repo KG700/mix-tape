@@ -1,8 +1,7 @@
 import React from "react";
-import Track from "./Track";
 import PlaylistPreview from "./PlaylistPreview";
 import PlaylistPlayer from "./PlaylistPlayer";
-import Group from "./Group";
+// import Group from "./Group";
 
 class Playlist extends React.Component {
 
@@ -167,13 +166,9 @@ class Playlist extends React.Component {
           />
         }
 
-
-
       </div>
-
     );
   }
-
 }
 
 export default Playlist;

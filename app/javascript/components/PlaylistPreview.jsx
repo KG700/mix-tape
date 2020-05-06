@@ -112,7 +112,6 @@ class PlaylistPreview extends React.Component {
       </div>
     );
   }
-
 }
 
 export default PlaylistPreview;

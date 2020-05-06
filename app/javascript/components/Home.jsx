@@ -28,7 +28,7 @@ class Home extends React.Component {
     this.setState(({
       allUsers: users,
     }))
-  };
+  }
 
   getSelectedUsers() {
     return this.state.allUsers.filter(user => user.selected)
@@ -51,7 +51,7 @@ class Home extends React.Component {
     this.state.allUsers.map(user => {
       if (user.id == userId) {
         specificUser = user;
-      };
+      }
     })
     return specificUser;
   }
@@ -82,7 +82,7 @@ class Home extends React.Component {
       })
       .then(data => { this.setState({ currentUser: data }) });
 
-  };
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (typeof this.state.currentUser !== 'undefined' && typeof this.state.allUsers !== 'undefined') {
@@ -148,7 +148,6 @@ class Home extends React.Component {
         </div>
 
       </div>
-
     );
   }
 }
