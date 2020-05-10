@@ -88,7 +88,7 @@ class SignIn extends React.Component {
           <li>Press Play to save and listen</li>
         </ul>
         <form action='/auth/spotify' className="signinButton">
-          <button style={signinButton} className="signinButton"> SIGN IN WITH SPOTIFY </button>
+          <button id="signinButton" style={signinButton} className="signinButton"> SIGN IN WITH SPOTIFY </button>
         </form>
       </div>
     </div>
@@ -97,3 +97,4 @@ class SignIn extends React.Component {
 }
 
 export default SignIn;
+x
