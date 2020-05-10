@@ -4,7 +4,7 @@ import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-import './Home.css';
+import "./Home.css";
 
 
 class Home extends React.Component {
@@ -67,7 +67,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log("getting currentUser from database")
     fetch("/api/v1/users.json")
       .then(response => {
         if (response.ok) {
@@ -91,7 +90,6 @@ class Home extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (typeof this.state.currentUser !== 'undefined' && typeof this.state.allUsers !== 'undefined') {
       if (prevState.currentUser !== this.state.currentUser) {
-        console.log("updating selected user tracks")
         const users = [...this.state.allUsers]
         let user = this.findUser(this.state.currentUser.id)
         let index = this.state.allUsers.indexOf(user)
@@ -110,31 +108,31 @@ class Home extends React.Component {
 
     let selectedUsers = this.state.allUsers.filter(user => user.selected)
 
-    const mynav = {
-      backgroundColor: "#ffaa01",
-      height: "75px",
-      padding: "10px",
-      fontSize: "4rem",
-    };
+    // const mynav = {
+    //   backgroundColor: "#ffaa01",
+    //   height: "75px",
+    //   padding: "10px",
+    //   fontSize: "4rem",
+    // };
 
-    const container = {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-around",
-      marginTop: '30px',
-      marginBottom: "30px"
-    }
+    // const container = {
+    //   display: "flex",
+    //   flexDirection: "row",
+    //   justifyContent: "space-around",
+    //   marginTop: '30px',
+    //   marginBottom: "30px"
+    // }
 
     return (
       <div>
 
-        <div style={mynav}>
+        <div className="mynav">
           <Nav
             currentUser={this.state.currentUser}
           />
         </div>
 
-        <div style={container}>
+        <div className="container">
           <UserList
             currentUser={this.state.currentUser}
             allUsers={this.state.allUsers}

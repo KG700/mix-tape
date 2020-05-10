@@ -112,7 +112,7 @@ class UserList extends React.Component {
           <div style={listContainer}>
             <input type="text" placeholder="Search for friends" style={placeHolder} onChange={(event) => this.searchSpace(event)} />
             <form>
-              <p style={usersList}>{allUsers}</p>
+              <div style={usersList}>{allUsers}</div>
             </form>
           </div>
 

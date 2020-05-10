@@ -17,6 +17,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require 'Helpers/controller_helpers'
+require 'capybara/poltergeist'
 require 'rubygems'
 
 # This stops simplecov from testing the coverage in these files
@@ -33,6 +34,20 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
   SimpleCov::Formatter::HTMLFormatter
 ])
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {
+    js_errors: false,
+    phantomjs_options: ['--ignore-ssl-errors=yes', '--ssl-protocol=any'],
+    debug: false,
+    timeout: 500,
+    phantomjs: File.absolute_path(Phantomjs.path)
+    
+  })
+end
+Capybara.ignore_hidden_elements = false
+Capybara.javascript_driver = :poltergeist
+Capybara.server_port = 3001
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

@@ -6,3 +6,19 @@ body {
   background-size: cover;
   background-repeat: repeat
 } */
+
+.container {
+  display: "flex";
+  flex-direction: "row";
+  justify-content: "space-around";
+  margin-top: '30px';
+  margin-bottom: "30px";
+};
+
+
+.mynav {
+  background-color: "#ffaa01";
+  height: "75px";
+  padding: "10px";
+  font-size: "4rem";
+};

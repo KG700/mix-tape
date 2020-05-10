@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-
 RSpec.describe UsersController, type: :controller do
 
   before do
     request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:spotify]
   end
-  let (:user) {double :user, auth_token: '12345', username: 'Test', spotify_id: 'test-username', image_url: 'https://test-pic.com/test' }
+  let (:user) { double :user, auth_token: '12345', username: 'Test', spotify_id: 'test-username', image_url: 'https://test-pic.com/test' }
   
   # describe 'spotify' do
   #   # it 'responds with 200' do
