@@ -35,18 +35,13 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::HTMLFormatter
 ])
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, {
-    js_errors: false,
-    phantomjs_options: ['--ignore-ssl-errors=yes', '--ssl-protocol=any'],
-    debug: false,
-    timeout: 500,
-    phantomjs: File.absolute_path(Phantomjs.path)
-    
-  })
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
-Capybara.ignore_hidden_elements = false
-Capybara.javascript_driver = :poltergeist
+
+Capybara.default_driver = :chrome
+Capybara.javascript_driver = :chrome
+
 Capybara.server_port = 3001
 
 RSpec.configure do |config|
