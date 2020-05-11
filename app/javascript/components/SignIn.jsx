@@ -87,8 +87,8 @@ class SignIn extends React.Component {
           <li>Mix until you are happy with the playlist</li>
           <li>Press Play to save and listen</li>
         </ul>
-        <form action='/auth/spotify' className="signinButton">
-          <button id="signinButton" style={signinButton} className="signinButton"> SIGN IN WITH SPOTIFY </button>
+        <form action='/auth/spotify'>
+          <button style={signinButton} className="signinButton"> SIGN IN WITH SPOTIFY </button>
         </form>
       </div>
     </div>

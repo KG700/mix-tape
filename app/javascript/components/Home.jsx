@@ -108,31 +108,31 @@ class Home extends React.Component {
 
     let selectedUsers = this.state.allUsers.filter(user => user.selected)
 
-    // const mynav = {
-    //   backgroundColor: "#ffaa01",
-    //   height: "75px",
-    //   padding: "10px",
-    //   fontSize: "4rem",
-    // };
+    const mynav = {
+      backgroundColor: "#ffaa01",
+      height: "75px",
+      padding: "10px",
+      fontSize: "4rem",
+    };
 
-    // const container = {
-    //   display: "flex",
-    //   flexDirection: "row",
-    //   justifyContent: "space-around",
-    //   marginTop: '30px',
-    //   marginBottom: "30px"
-    // }
+    const container = {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginTop: '30px',
+      marginBottom: "30px"
+    }
 
     return (
       <div>
 
-        <div className="mynav">
+        <div style={mynav}>
           <Nav
             currentUser={this.state.currentUser}
           />
         </div>
 
-        <div className="container">
+        <div style={container}>
           <UserList
             currentUser={this.state.currentUser}
             allUsers={this.state.allUsers}
