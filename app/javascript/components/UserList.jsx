@@ -48,9 +48,9 @@ class UserList extends React.Component {
     ));
 
     const container = {
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       justifyContent: "flex-start",
       minWidth: "300px",
       maxWidth: "600px"
@@ -58,7 +58,7 @@ class UserList extends React.Component {
 
     const title = {
       display: 'block',
-      marginBottom: "15px",
+      marginBottom: "10px",
       fontFamily: 'Audiowide, Verdana',
       fontSize: "2rem",
       fontWeight: 'Bold',
@@ -68,7 +68,8 @@ class UserList extends React.Component {
     const listContainer = {
       padding: "10px",
       backgroundColor: "black",
-      borderRadius: "8px"
+      borderRadius: "8px",
+      marginBottom: "20px"
     }
 
     const placeHolder = {
@@ -82,7 +83,7 @@ class UserList extends React.Component {
 
     const usersList = {
       height: "200px",
-      overflow: "hidden", 
+      overflow: "hidden",
       overflowY: "scroll",
       listStyle: "none",
       fontFamily: 'Audiowide, Verdana',
@@ -93,10 +94,10 @@ class UserList extends React.Component {
     }
 
     const groupContainer = {
-      display: "flex", 
+      display: "flex",
       flexDirection: "row",
       justifyContent: "space-around",
-      marginTop: "20px",
+      marginTop: "10px",
       minWidth: "300px",
       maxWidth: "300px"
     }
@@ -106,9 +107,9 @@ class UserList extends React.Component {
       <>
       {this.props.showUsers &&
         <div style={container}>
-          
+
           <h2 style={title}>FRIENDS</h2>
-          
+
           <div style={listContainer}>
             <input type="text" placeholder="Search for friends" style={placeHolder} onChange={(event) => this.searchSpace(event)} />
             <form>

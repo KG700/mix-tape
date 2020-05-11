@@ -21,8 +21,7 @@ class Group extends React.Component {
       display: "flex", 
       flexDirection: "row", 
       flexWrap: "wrap", 
-      justifyContent: "space-around",
-      marginTop: "20px"
+      justifyContent: "space-around"
     }
 
     const groupImg = {

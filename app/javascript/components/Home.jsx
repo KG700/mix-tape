@@ -1,10 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-
 
 class Home extends React.Component {
   constructor(props){
@@ -109,16 +106,16 @@ class Home extends React.Component {
 
     const mynav = {
       backgroundColor: "#ffaa01",
-      height: "75px",
+      height: "50px",
       padding: "10px",
-      fontSize: "4rem",
+      fontSize: "4rem"
     };
 
     const container = {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-around",
-      marginTop: '30px',
+      marginTop: '10px',
       marginBottom: "30px"
     }
 
