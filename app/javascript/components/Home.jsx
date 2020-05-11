@@ -4,7 +4,6 @@ import CurrentUser from "./CurrentUser";
 import Nav from "./Nav";
 import UserList from "./UserList";
 import Playlist from "./Playlist";
-import "./Home.css";
 
 
 class Home extends React.Component {
