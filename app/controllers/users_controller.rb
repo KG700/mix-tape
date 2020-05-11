@@ -9,13 +9,12 @@ class UsersController < ApplicationController
     else
       user_details = get_spotify_user_details
     end
-
     user = persist_user(user_details)
   
     session[:current_user_id] = user.id
 
     if Rails.env.test? 
-      tracks = get_mock_tracks
+      tracks = get_mock_tracks(user_details)
     else
       tracks = get_spotify_tracks(user_details)
     end
@@ -42,7 +41,7 @@ class UsersController < ApplicationController
       'uid' => '12345',
       'credentials' => {
         'expires' => true, 
-        'expires_at' => 1589135142,
+        'expires_at' => 1_589_135_142,
         'refresh_token' => 'testRefreshToken',
         'token' => 'testToken'
       },
@@ -58,10 +57,10 @@ class UsersController < ApplicationController
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:spotify] 
   end
 
-  def get_mock_tracks
+  def get_mock_tracks(user_details)
     tracks = [
       {
-        'id' => 1,
+        # 'id' => 1,
         'name' => 'test',
         'href' => 'www.test.com',
         'artists' => {
@@ -69,7 +68,7 @@ class UsersController < ApplicationController
         }
       },
       {
-        'id' => 2,
+        # 'id' => 2,
         'name' => 'test2',
         'href' => 'www.test2.com',
         'artists' => {
