@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include TrackHelper
 
   def new_spotify
     if Rails.env.test? 
@@ -45,27 +46,26 @@ class UsersController < ApplicationController
 
     session[:current_user_id] = @user.id
 
-    tracks = spotify_user.top_tracks(limit: 50, time_range: 'medium_term')
+    tracks = spotify_user.top_tracks(limit: 50, time_range: 'short_term')
+    
+    UserTrack.where(user_id: @user.id).destroy_all
     
     persist_tracks(@user.id, tracks)
     
+    # @tracks.each do |track|
+    #   @current_track = Track.find_by(spotify_track_id: track.id)
+    #   @current_track ||= Track.create(
+    #     spotify_track_id: track.id,
+    #     track_name: track.name,
+    #     track_url: track.href,
+    #     artist_name: track.artists[0].name,
+    #     )
 
-    UserTrack.where(user_id: @user.id).destroy_all
-
-    @tracks.each do |track|
-      @current_track = Track.find_by(spotify_track_id: track.id)
-      @current_track ||= Track.create(
-        spotify_track_id: track.id,
-        track_name: track.name,
-        track_url: track.href,
-        artist_name: track.artists[0].name,
-        )
-
-      UserTrack.create(
-        user_id: @user.id,
-        track_id: @current_track.id
-        )
-    end
+    #   UserTrack.create(
+    #     user_id: @user.id,
+    #     track_id: @current_track.id
+    #     )
+    # end
 
     redirect_to root_path
 

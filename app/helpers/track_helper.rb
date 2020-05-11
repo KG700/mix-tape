@@ -13,7 +13,6 @@ module TrackHelper
               user_id: user_id,
               track_id: current_track.id
               )
-          end
         end
     end
 end
