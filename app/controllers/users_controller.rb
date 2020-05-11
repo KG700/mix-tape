@@ -1,27 +1,7 @@
-require 'rspotify'
-
 class UsersController < ApplicationController
   include TrackHelper
   include LoginHelper
 
-  def new_spotify
-    if Rails.env.test? 
-      user_details = get_mock_user_details
-    else
-      user_details = get_spotify_user_details
-    end
-    user = persist_user(user_details)
-
-    if Rails.env.test? 
-      tracks = get_mock_tracks
-    else
-      tracks = get_spotify_tracks(user.id)
-    end
-    persist_tracks(user.id, tracks)
-
-    redirect_to root
-  end
-  
   def spotify
 
     if Rails.env.test? 
@@ -29,23 +9,16 @@ class UsersController < ApplicationController
     else
       user_details = get_spotify_user_details
     end
-    # puts "request.env['omniauth.auth']:"
-    # puts request.env['omniauth.auth']
-    # puts "user_details:"
-    # puts user_details
 
     user = persist_user(user_details)
-    puts "user:"
-    puts user
+  
     session[:current_user_id] = user.id
-    puts "session[:current_user_id]:"
-    puts session[:current_user_id]
-    if Rails.env.test? 
-      get_mock_tracks
-    end
 
-    tracks = get_spotify_tracks(user_details)
-    
+    if Rails.env.test? 
+      tracks = get_mock_tracks
+    else
+      tracks = get_spotify_tracks(user_details)
+    end
     persist_tracks(user.id, tracks)
 
     redirect_to root_path
@@ -85,4 +58,24 @@ class UsersController < ApplicationController
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:spotify] 
   end
 
+  def get_mock_tracks
+    tracks = [
+      {
+        'id' => 1,
+        'name' => 'test',
+        'href' => 'www.test.com',
+        'artists' => {
+          'name' => 'testy'
+        }
+      },
+      {
+        'id' => 2,
+        'name' => 'test2',
+        'href' => 'www.test2.com',
+        'artists' => {
+          'name' => 'testy2'
+        }
+      }
+    ]
+  end
 end
