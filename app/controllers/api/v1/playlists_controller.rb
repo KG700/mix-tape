@@ -8,13 +8,17 @@ class Api::V1::PlaylistsController < ApplicationController
   def create
     user = find_playlist_owner(current_user.spotify_id)
     playlist_tracks_ids = params[:playlist]
-    playlist = user.create_playlist!('My Mixtape')
+
+    playlist = create_blank_playlist(user)
     session[:playlist_id] = playlist.id
-    playlist_tracks = []
-    playlist_tracks_ids.each do |track|
-      playlist_tracks << RSpotify::Track.find(track)
-    end
-    playlist.add_tracks!(playlist_tracks)
+
+    add_tracks_to_playlist(playlist_tracks_ids, playlist)
+
+    # playlist_tracks = []
+    # playlist_tracks_ids.each do |track|
+    #   playlist_tracks << RSpotify::Track.find(track)
+    # end
+    # playlist.add_tracks!(playlist_tracks)
 
     current_user.playlist_id = playlist.id
     current_user.save!
@@ -26,6 +30,18 @@ class Api::V1::PlaylistsController < ApplicationController
 
   def find_playlist_owner(user_details)
     RSpotify::User.find(user_details)
+  end
+
+  def create_blank_playlist(user)
+    user.create_playlist!('My Mixtape')
+  end
+
+  def add_tracks_to_playlist(tracks, playlist)
+    playlist_tracks = []
+    tracks.each do |track|
+      playlist_tracks << RSpotify::Track.find(track)
+    end
+    playlist.add_tracks!(playlist_tracks)
   end
 
 end
