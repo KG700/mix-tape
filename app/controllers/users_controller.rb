@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include TrackHelper
+  include LoginHelper
 
   def new_spotify
     if Rails.env.test? 
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     else
       tracks = get_spotify_tracks(user.id)
     end
-    persist_tracks(tracks)
+    persist_tracks(user.id, tracks)
 
     redirect_to root
   end
@@ -31,18 +32,20 @@ class UsersController < ApplicationController
     puts "spotify_user:"
     puts spotify_user
 
-    @user = User.find_by(spotify_id: spotify_user.id)
-    if @user
-      @user.update(auth_token: spotify_user.credentials.token)
-    else
-      # p spotify_user.images[0]
-      @user = User.create(
-        auth_token: spotify_user.credentials.token,
-        username: spotify_user.display_name,
-        spotify_id: spotify_user.id,
-        image_url: (!spotify_user.images || spotify_user.images.empty?) ? 'default' : spotify_user.images[0].url
-      )
-    end
+    persist_user(spotify_user)
+
+    # @user = User.find_by(spotify_id: spotify_user.id)
+    # if @user
+    #   @user.update(auth_token: spotify_user.credentials.token)
+    # else
+    #   # p spotify_user.images[0]
+    #   @user = User.create(
+    #     auth_token: spotify_user.credentials.token,
+    #     username: spotify_user.display_name,
+    #     spotify_id: spotify_user.id,
+    #     image_url: (!spotify_user.images || spotify_user.images.empty?) ? 'default' : spotify_user.images[0].url
+    #   )
+    # end
 
     session[:current_user_id] = @user.id
 
