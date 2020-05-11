@@ -11,5 +11,6 @@ module LoginHelper
         image_url: (!user_details.images || user_details.images.empty?) ? 'default' : user_details.images[0].url
       )
     end
+    @user
   end
 end
