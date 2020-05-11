@@ -14,12 +14,6 @@ class Api::V1::PlaylistsController < ApplicationController
 
     add_tracks_to_playlist(playlist_tracks_ids, playlist)
 
-    # playlist_tracks = []
-    # playlist_tracks_ids.each do |track|
-    #   playlist_tracks << RSpotify::Track.find(track)
-    # end
-    # playlist.add_tracks!(playlist_tracks)
-
     current_user.playlist_id = playlist.id
     current_user.save!
 
