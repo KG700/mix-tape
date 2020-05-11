@@ -6,7 +6,7 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def create
-    user = RSpotify::User.find(current_user.spotify_id)
+    user = find_playlist_owner(current_user.spotify_id)
     playlist_tracks_ids = params[:playlist]
     playlist = user.create_playlist!('My Mixtape')
     session[:playlist_id] = playlist.id
@@ -20,6 +20,12 @@ class Api::V1::PlaylistsController < ApplicationController
     current_user.save!
 
     render json: { player_id: current_user.playlist_id }
+  end
+
+  private
+
+  def find_playlist_owner(user_details)
+    RSpotify::User.find(user_details)
   end
 
 end

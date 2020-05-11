@@ -14,7 +14,7 @@ describe 'Signup Flow', type: :feature, js: true do
       sleep 2
       find("#signinButton").click
       sleep 2
-      expect(page).to have_current_path('/auth/spotify')
+      expect(page).to have_current_path('/auth/spotify/callback')
       sleep 2
     end
   end
