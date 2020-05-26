@@ -1,5 +1,4 @@
 import React from "react";
-import './SignIn.css';
 import LogoImg from '../images/logo-bold.png';
 
 class SignIn extends React.Component {
@@ -9,29 +8,29 @@ class SignIn extends React.Component {
 
   render() {
 
-    const container = {
-      display: "flex", 
-      flexDirection: "row", 
-      justifyContent: "space-around", 
-      marginLeft: "auto", 
-      marginRight: "auto",
-      marginTop: "80px"
-    }
+    // const container = {
+    //   display: "flex",
+    //   flexDirection: "row",
+    //   justifyContent: "space-around",
+    //   marginLeft: "auto",
+    //   marginRight: "auto",
+    //   marginTop: "50px"
+    // }
 
     const containerColumn = {
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center", 
-      justifyContent: "space-around"
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      marginTop: "25px"
     }
 
     const logoContainer = {
-      display: "flex", 
-      flexDirection: "row", 
-      justifyContent: "space-around", 
-      marginLeft: "auto", 
-      marginRight: "auto",
-      marginTop: "50px"
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginLeft: "auto",
+      marginRight: "auto"
     };
 
     const logo = {
@@ -47,6 +46,10 @@ class SignIn extends React.Component {
       width: "150px",
       marginTop: 'auto',
       marginBottom: 'auto'
+    }
+
+    const textContainer = {
+      marginTop: "10px"
     }
 
     const text = {
@@ -75,18 +78,20 @@ class SignIn extends React.Component {
     };
 
     return (
-    <div style={container}>
+    <div>
       <div style={containerColumn}>
-        <div style={logoContainer}> 
-          <p style={logo}> MIX </p>
+        <div style={logoContainer}>
+          <h2 style={logo}> MIX </h2>
           <img src={LogoImg} style={img} alt="LogoPicture"  />
-          <p style={logo}> TAPE </p>
+          <h2 style={logo}> TAPE </h2>
         </div>
-        <ul style={text}>
-          <li>Select friends to share music with</li>
-          <li>Mix until you are happy with the playlist</li>
-          <li>Press Play to save and listen</li>
-        </ul>
+        <div style={textContainer}>
+          <ul style={text}>
+            <li>Select friends to share music with</li>
+            <li>Mix until you are happy with the playlist</li>
+            <li>Press Play to save and listen</li>
+          </ul>
+        </div>
         <form action='/auth/spotify'>
           <button style={signinButton} className="signinButton"> SIGN IN WITH SPOTIFY </button>
         </form>
