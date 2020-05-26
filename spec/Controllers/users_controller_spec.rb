@@ -2,23 +2,23 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  before do
-    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:spotify]
-  end
-  let (:user) { double :user, auth_token: '12345', username: 'Test', spotify_id: 'test-username', image_url: 'https://test-pic.com/test' }
+  # before do
+  #   request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:spotify]
+  # end
+  # let (:user) { double :user, auth_token: '12345', username: 'Test', spotify_id: 'test-username', image_url: 'https://test-pic.com/test' }
   
   # describe 'spotify' do
-  #   # it 'responds with 200' do
-  #   #   get :spotify
-  #   #   expect(response).to have_http_status(200)
-  #   # end
-    
-  #   it "should successfully create a user" do
-  #     expect {
-  #       post :spotify
-  #       @user = User.create { :user }
-  #     }.to change{ User.count }.by(1)
+  #   it 'responds with 200' do
+  #     post :spotify
+  #     expect(response).to have_http_status(200)
   #   end
+    
+    # it "should successfully create a user" do
+    #   expect {
+    #     post :spotify
+    #     @user = User.create { :user }
+    #   }.to change{ User.count }.by(1)
+    # end
   # end
 
   # describe 'POST /' do

@@ -17,4 +17,31 @@ module TrackHelper
         )
     end
   end
+
+  def get_mock_tracks(_user_details)
+    tracks = {
+      "items": [
+        {
+          'artists' => [
+            {
+              'name' => 'testy1'
+            } 
+          ],
+          'id' => '12345',
+          'name' => 'test',
+          'href' => 'www.test.com',
+        },
+        {
+          'artists' => [
+            {
+              'name' => 'testy2'
+            } 
+          ],
+          'id' => '54321',
+          'name' => 'test2',
+          'href' => 'www.test2.com',
+        }
+      ] 
+    }
+  end
 end

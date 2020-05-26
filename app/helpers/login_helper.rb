@@ -37,24 +37,4 @@ module LoginHelper
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:spotify] 
   end
 
-  def get_mock_tracks(user_details)
-    tracks = [
-      {
-        # 'id' => 1,
-        'name' => 'test',
-        'href' => 'www.test.com',
-        'artists' => {
-          'name' => 'testy'
-        }
-      },
-      {
-        # 'id' => 2,
-        'name' => 'test2',
-        'href' => 'www.test2.com',
-        'artists' => {
-          'name' => 'testy2'
-        }
-      }
-    ]
-  end
 end
