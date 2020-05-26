@@ -34,47 +34,4 @@ class UsersController < ApplicationController
     user.top_tracks(limit: 50, time_range: 'short_term')
   end
 
-  def get_mock_user_details
-    OmniAuth.config.test_mode = true
-    omniauth_hash = { 
-      'provider' => 'spotify',
-      'uid' => '12345',
-      'credentials' => {
-        'expires' => true, 
-        'expires_at' => 1_589_135_142,
-        'refresh_token' => 'testRefreshToken',
-        'token' => 'testToken'
-      },
-      'extra' => {
-        'info' => {
-          'display_name' => 'Test',
-          'id' => 'test-username',
-          'images' => 'default'
-        }  
-      }  
-    }
-    OmniAuth.config.add_mock(:spotify, omniauth_hash)
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:spotify] 
-  end
-
-  def get_mock_tracks(user_details)
-    tracks = [
-      {
-        # 'id' => 1,
-        'name' => 'test',
-        'href' => 'www.test.com',
-        'artists' => {
-          'name' => 'testy'
-        }
-      },
-      {
-        # 'id' => 2,
-        'name' => 'test2',
-        'href' => 'www.test2.com',
-        'artists' => {
-          'name' => 'testy2'
-        }
-      }
-    ]
-  end
 end
