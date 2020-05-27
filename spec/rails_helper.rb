@@ -7,19 +7,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 
-OmniAuth.config.test_mode = true
-omniauth_hash = { 'provider' => 'spotify',
-                  'uid' => '12345',
-                  'info' => {
-                        'username' => 'Test',
-                        'auth_token' => '12345',
-                        'spotify_id' => 'test-username',
-                        'image' => 'https://test-pic.com/test',
-                    }    
-}
- 
-OmniAuth.config.add_mock(:spotify, omniauth_hash)
-
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
