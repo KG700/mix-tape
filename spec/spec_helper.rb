@@ -17,6 +17,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require 'Helpers/controller_helpers'
+require 'capybara/poltergeist'
 require 'rubygems'
 
 # This stops simplecov from testing the coverage in these files
@@ -33,6 +34,15 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
   SimpleCov::Formatter::HTMLFormatter
 ])
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.default_driver = :chrome
+Capybara.javascript_driver = :chrome
+
+Capybara.server_port = 3001
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

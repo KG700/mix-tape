@@ -93,7 +93,7 @@ class SignIn extends React.Component {
           </ul>
         </div>
         <form action='/auth/spotify'>
-          <button style={signinButton}> SIGN IN WITH SPOTIFY </button>
+          <button style={signinButton} className="signinButton"> SIGN IN WITH SPOTIFY </button>
         </form>
       </div>
     </div>

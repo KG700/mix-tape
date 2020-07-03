@@ -63,7 +63,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log("getting currentUser from database")
     fetch("/api/v1/users.json")
       .then(response => {
         if (response.ok) {
@@ -87,7 +86,6 @@ class Home extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (typeof this.state.currentUser !== 'undefined' && typeof this.state.allUsers !== 'undefined') {
       if (prevState.currentUser !== this.state.currentUser) {
-        console.log("updating selected user tracks")
         const users = [...this.state.allUsers]
         let user = this.findUser(this.state.currentUser.id)
         let index = this.state.allUsers.indexOf(user)

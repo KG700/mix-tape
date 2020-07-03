@@ -2,6 +2,8 @@
 
 Makers Final Project
 
+![MT](./app/assets/images/MT.png)
+
 Contributors: [Karla Gardiner](https://github.com/KG700), [Lila Walker](https://github.com/lilawalker), [Jara Santamaria Martinez](https://github.com/jarasmar), [Sophia Bell](https://github.com/Kittaru87)
 
 Checkout our app at https://mix-tape-makers.herokuapp.com/signin
